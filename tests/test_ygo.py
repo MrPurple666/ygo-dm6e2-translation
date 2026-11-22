@@ -1,3 +1,4 @@
+import json
 import os
 import tempfile
 import unittest
@@ -7,11 +8,20 @@ from ygo import (
     Rom,
     contains_japanese,
     control_prefix,
+    cp932_len,
     decode,
     encode,
     write_ips,
 )
-from ygo.tables import OFFSETS, extract_names, match_names
+from ygo.tables import (
+    OFFSETS,
+    extract_jp_descriptions,
+    extract_names,
+    extract_us_language_block,
+    find_overflows,
+    match_descriptions,
+    match_names,
+)
 
 ROOT = Path(__file__).resolve().parent.parent
 JP = Path(os.environ.get("YGO_JP_ROM", ROOT / "Yu-Gi-Oh! Duel Monsters 6 Expert 2 (Japan).gba"))
@@ -22,6 +32,7 @@ US = Path(
         / "Yu-Gi-Oh! - Worldwide Edition - Stairway to the Destined Duel (USA) (En,Ja,Fr,De,Es,It).gba",
     )
 )
+MANUAL_DESCRIPTIONS = ROOT / "data" / "manual_descriptions.json"
 
 
 class TestPrimitives(unittest.TestCase):
@@ -73,6 +84,39 @@ class TestNameTables(unittest.TestCase):
         m = match_names(jp, us_jp)
         assert len(m) == 1083
         assert m[0] == 0 and m[1] == 1
+
+
+class TestDescriptionTables(unittest.TestCase):
+    def test_descricoes_jp(self):
+        d = extract_jp_descriptions(Rom(JP))
+        assert len(d) == 1115
+        assert d[0].startswith("闘いに敗れた兵士たちの魂が一つになった怨霊")
+        assert d[-1] == ""
+
+    def test_blocos_ingles_e_japones(self):
+        us = Rom(US)
+        en = extract_us_language_block(us, OFFSETS["US_EN_DESC"], ascii_only=True, jp_only=False)
+        jp = extract_us_language_block(us, OFFSETS["US_JP_DESC"], ascii_only=False, jp_only=True)
+        assert len(en) == len(jp) == 1082
+        assert en[0].startswith("A vengeful creature")
+        assert jp[0].startswith("闘いに敗れた兵士たち")
+
+    def test_casamento_de_descricoes(self):
+        jp = extract_jp_descriptions(Rom(JP))
+        us = Rom(US)
+        us_jp = extract_us_language_block(us, OFFSETS["US_JP_DESC"], ascii_only=False, jp_only=True)
+        m = match_descriptions(jp, us_jp)
+        assert len(m) == 1070
+        assert (m[0], m[196], m[319], m[325], m[330]) == (0, 194, 315, 320, 325)
+
+    def test_overflow_tem_override(self):
+        us = Rom(US)
+        en = extract_us_language_block(us, OFFSETS["US_EN_DESC"], ascii_only=True, jp_only=False)
+        over = find_overflows(en)
+        assert over == [194, 315, 320, 325, 608, 609, 610, 800]
+        manual = json.loads(MANUAL_DESCRIPTIONS.read_text())
+        assert sorted(int(k) for k in manual) == over
+        assert all(cp932_len(manual[str(i)]) <= 383 for i in over)
 
 
 if __name__ == "__main__":

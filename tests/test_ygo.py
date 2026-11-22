@@ -34,6 +34,13 @@ class TestPrimitives(unittest.TestCase):
         assert first[0][0] == 0x89C47E
         assert first[0][1].startswith(b"A vengeful creature")
 
+    def test_escrita_reflete_em_data(self):
+        rom = Rom(JP)
+        before = rom.data
+        rom.write(0x2AA160, b"TEST")
+        assert rom.data[0x2AA160 : 0x2AA164] == b"TEST"
+        assert before[0x2AA160 : 0x2AA164] == b"\x92n\x94\x9b"
+
     def test_texto_roundtrip_e_controles(self):
         s = "$g(1,L,1)$fit$iグールズが立ち去った後$nカバン"
         assert decode(encode(s)) == s

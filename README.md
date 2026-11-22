@@ -41,7 +41,6 @@ Os textos editáveis ficam em:
 - `ygo/` — leitura de ROM, tabelas de texto, conversão full-width e build.
 - `tools/` — CLI de build e editor desktop.
 - `tests/` — suíte `unittest`.
-- `docs/editor-design.md`, `docs/editor-plan.md` — projeto do editor.
 
 ## Testes
 

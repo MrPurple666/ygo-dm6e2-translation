@@ -1,4 +1,4 @@
-"""Núcleo do editor de traduções: carregar, validar e salvar os JSONs."""
+"""Editor core: load, validate and save the translation JSON files."""
 
 import json
 import os
@@ -38,20 +38,20 @@ def save_translations(data: dict, path: Path) -> None:
 def validate_entry(original: str, edited: str, *, limit: int) -> list[str]:
     problems: list[str] = []
     if not edited.strip():
-        problems.append("texto vazio")
+        problems.append("empty text")
     original_tokens = TOKEN_RE.findall(original)
     edited_tokens = TOKEN_RE.findall(edited)
     if original_tokens != edited_tokens:
         problems.append(
-            f"tokens de controle alterados: {original_tokens} != {edited_tokens}"
+            f"control tokens changed: {original_tokens} != {edited_tokens}"
         )
     if contains_japanese(edited):
-        problems.append("ainda há texto japonês")
+        problems.append("Japanese text still present")
     try:
         size = cp932_len(fullwidth(edited))
     except UnicodeEncodeError:
-        problems.append("caractere não representável em cp932")
+        problems.append("character not representable in cp932")
         size = 0
     if size > limit:
-        problems.append(f"texto tem {size} bytes; limite é {limit}")
+        problems.append(f"text is {size} bytes; limit is {limit}")
     return problems

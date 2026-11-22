@@ -1,12 +1,12 @@
 # ygo-dm6e2-translation
 
-Tradução para inglês de **Yu-Gi-Oh! Duel Monsters 6 Expert 2** (GBA, versão japonesa), usando o texto da *Worldwide Edition: Stairway to the Destined Duel* como fonte. A ROM japonesa é mantida como base para preservar as 1115 cartas do lançamento original.
+English translation of **Yu-Gi-Oh! Duel Monsters 6 Expert 2** (GBA, Japanese release), using the text from *Worldwide Edition: Stairway to the Destined Duel* as the source. The Japanese ROM stays as the base so all 1115 cards from the original release are preserved.
 
-As ROMs não são incluídas neste repositório. Use apenas cópias legais dos jogos.
+ROMs are not included in this repository. Use only legal copies of the games.
 
-## Gerar a ROM traduzida
+## Build the translated ROM
 
-Requisitos: Python 3 e as duas ROMs no diretório do projeto.
+Requirements: Python 3 and both ROMs in the project directory.
 
 ```bash
 python3 tools/build.py \
@@ -17,44 +17,44 @@ python3 tools/build.py \
   --report translation-report.json
 ```
 
-Saídas:
+Outputs:
 
-- `dm6-en.gba` — ROM patched (16 MiB).
-- `dm6-en.ips` — patch IPS para aplicar sobre a ROM japonesa original.
-- `translation-report.json` — hashes, contagens e verificação visual.
+- `dm6-en.gba` — patched ROM (16 MiB).
+- `dm6-en.ips` — IPS patch to apply to the original Japanese ROM.
+- `translation-report.json` — hashes, counts and visual check.
 
-## Editor de traduções
+## Translation editor
 
 ```bash
 python3 tools/editor.py
 ```
 
-Requisitos: GTK 3 via PyGObject (`gi`). O editor abre abas para nomes, descrições, falas, UI e overrides; filtra entradas; valida códigos de controle (`$...`, `@N`, `%s`) e tamanho em bytes cp932; salva com backup `.bak` e tem botão para rodar o build.
+Requirements: GTK 3 via PyGObject (`gi`). The editor has tabs for names, descriptions, dialogue, UI and overrides; it filters entries, validates control codes (`$...`, `@N`, `%s`) and cp932 byte size, saves with a `.bak` backup, and has a button to run the build.
 
-Os textos editáveis ficam em:
+Editable text lives in:
 
-- `data/manual.json` — nomes, descrições, falas de script e UI sem par na ROM americana.
-- `data/manual_descriptions.json` — descrições curtas para cartas cujo texto inglês não cabe no slot original.
+- `data/manual.json` — names, descriptions, script lines and UI strings without a match in the US ROM.
+- `data/manual_descriptions.json` — short descriptions for cards whose English text does not fit the original slot.
 
-## Estrutura
+## Structure
 
-- `ygo/` — leitura de ROM, tabelas de texto, conversão full-width e build.
-- `tools/` — CLI de build e editor desktop.
-- `tests/` — suíte `unittest`.
+- `ygo/` — ROM reading, text tables, full-width conversion and build.
+- `tools/` — build CLI and desktop editor.
+- `tests/` — `unittest` suite.
 
-## Testes
+## Tests
 
 ```bash
 python3 -m unittest discover -s tests -v
 ```
 
-## Limitações conhecidas
+## Known limitations
 
-- O renderizador da ROM japonesa exige caracteres full-width; os diálogos são paginados com `$p` para caber na caixa.
-- Algumas descrições longas são abreviadas para caber no slot fixo de 0x180 bytes; a quantidade aparece no relatório.
-- O logo/título desenhado em arte permanece japonês.
-- Traduções manuais foram feitas com terminologia TCG, mas merecem revisão humana.
+- The Japanese ROM renderer requires full-width characters; dialogue is split into pages with `$p` to fit the text box.
+- Some long descriptions are shortened to fit the fixed 0x180-byte slot; the count is in the report.
+- The drawn title/logo artwork remains Japanese.
+- Manual translations use TCG terminology but still deserve human review.
 
-## Versão
+## Version
 
-Ver `CHANGELOG.md`.
+See `CHANGELOG.md`.

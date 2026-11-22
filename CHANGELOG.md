@@ -4,19 +4,19 @@
 
 ### Added
 
-- Tradução para inglês da ROM japonesa de Duel Monsters 6 Expert 2, preservando as 1115 cartas.
-- Pipeline Python para extrair nomes, descrições, diálogos e UI das duas ROMs e gerar ROM, IPS e relatório.
-- Tabela de traduções manuais e descrições curtas em `data/`.
-- Editor desktop GTK 3 com busca, validação, backup e botão de rebuild.
-- README e changelog.
+- English translation of the Japanese ROM of Duel Monsters 6 Expert 2, preserving all 1115 cards.
+- Python pipeline to extract names, descriptions, dialogue and UI text from both ROMs and generate a ROM, IPS patch and report.
+- Manual translation tables and short descriptions in `data/`.
+- GTK 3 desktop editor with search, validation, backup and rebuild button.
+- README and changelog.
 
 ### Changed
 
-- Texto de diálogo e cartas gravado em full-width cp932 e dividido em páginas para o renderizador da ROM japonesa.
-- Nomes e descrições portados da Worldwide Edition quando casam pelo texto japonês; o restante usa traduções manuais.
+- Dialogue and card text is written in full-width cp932 and split into pages for the Japanese ROM renderer.
+- Names and descriptions are ported from Worldwide Edition when they match by Japanese text; the rest use manual translations.
 
 ### Fixed
 
-- Códigos de controle preservados nas traduções.
-- Espaços e dígitos preservados nas quebras de linha e páginas.
-- Ponteiros que caíam no meio de caracteres de 2 bytes.
+- Control codes are preserved in all translations.
+- Spaces and digits are preserved across line breaks and page breaks.
+- Pointers that landed in the middle of 2-byte characters.

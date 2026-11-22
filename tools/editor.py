@@ -1,4 +1,4 @@
-"""Editor desktop das traduções de Yu-Gi-Oh! DM6 Expert 2."""
+"""Desktop editor for the Yu-Gi-Oh! DM6 Expert 2 translation."""
 
 import copy
 import subprocess
@@ -28,9 +28,9 @@ US_ROM = Path(
     "(En,Ja,Fr,De,Es,It).gba"
 )
 SECTIONS = {
-    "names": "Nomes",
-    "descriptions": "Descrições",
-    "script": "Falas",
+    "names": "Names",
+    "descriptions": "Descriptions",
+    "script": "Dialogue",
     "ui": "UI",
     "overrides": "Overrides",
 }
@@ -72,7 +72,7 @@ def filter_rows(data: dict, section: str, query: str) -> list[tuple[str, str]]:
 
 
 def validation_for(section: str, original: str, edited: str) -> list[str]:
-    """Valida qualquer seção; falas/UI usam limite informativo alto."""
+    """Validate any section; dialogue/UI use a high informational limit."""
     return validate_entry(original, edited, limit=LIMITS.get(section, 10_000))
 
 
@@ -89,7 +89,7 @@ def apply_edit(data: dict, section: str, key: str, text: str) -> dict:
 
 class EditorWindow(Gtk.Window):
     def __init__(self):
-        Gtk.Window.__init__(self, title="Editor de Traduções — DM6 Expert 2")
+        Gtk.Window.__init__(self, title="Translation Editor - DM6 Expert 2")
         self.set_default_size(1000, 700)
         self.data = combine_data(load_translations(MANUAL), load_overrides(OVERRIDES))
         self.current_section = "names"
@@ -109,7 +109,7 @@ class EditorWindow(Gtk.Window):
         bottom = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
         self.status = Gtk.Label(label="")
         bottom.pack_start(self.status, True, True, 0)
-        build_button = Gtk.Button(label="Gerar ROM/IPS")
+        build_button = Gtk.Button(label="Build ROM/IPS")
         build_button.connect("clicked", self.on_build)
         bottom.pack_start(build_button, False, False, 0)
         main_box.pack_start(bottom, False, False, 0)
@@ -120,13 +120,13 @@ class EditorWindow(Gtk.Window):
     def _build_page(self, section: str) -> Gtk.Box:
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         search = Gtk.Entry()
-        search.set_placeholder_text("Buscar (índice, offset ou texto)")
+        search.set_placeholder_text("Search (index, offset or text)")
         search.connect("changed", self.on_search)
         box.pack_start(search, False, False, 0)
 
         store = Gtk.ListStore(str, str)
         tree = Gtk.TreeView(model=store)
-        for column_index, title in enumerate(("Chave", "Texto")):
+        for column_index, title in enumerate(("Key", "Text")):
             renderer = Gtk.CellRendererText()
             column = Gtk.TreeViewColumn(title, renderer, text=column_index)
             tree.append_column(column)
@@ -143,9 +143,9 @@ class EditorWindow(Gtk.Window):
         box.pack_start(text_scrolled, True, True, 0)
 
         buttons = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-        save = Gtk.Button(label="Salvar entrada")
+        save = Gtk.Button(label="Save entry")
         save.connect("clicked", self.on_save_entry)
-        reload = Gtk.Button(label="Recarregar arquivos")
+        reload = Gtk.Button(label="Reload files")
         reload.connect("clicked", self.on_reload)
         buttons.pack_start(save, False, False, 0)
         buttons.pack_start(reload, False, False, 0)
@@ -214,7 +214,7 @@ class EditorWindow(Gtk.Window):
 
     def on_save_entry(self, button):
         if self.current_key is None:
-            self.status.set_text("selecione uma entrada")
+            self.status.set_text("select an entry")
             return
         if self._validate_current():
             return
@@ -226,7 +226,7 @@ class EditorWindow(Gtk.Window):
         )
         self._save_files()
         self._refresh(self.current_section)
-        self.status.set_text("salvo")
+        self.status.set_text("saved")
 
     def _save_files(self):
         manual = {key: value for key, value in self.data.items() if key != "overrides"}
@@ -236,7 +236,7 @@ class EditorWindow(Gtk.Window):
     def on_reload(self, button):
         self.data = combine_data(load_translations(MANUAL), load_overrides(OVERRIDES))
         self._refresh(self.current_section)
-        self.status.set_text("recarregado")
+        self.status.set_text("reloaded")
 
     def on_build(self, button):
         result = subprocess.run(
@@ -262,8 +262,8 @@ class EditorWindow(Gtk.Window):
             flags=0,
             message_type=Gtk.MessageType.INFO,
             buttons=Gtk.ButtonsType.OK,
-            text=f"saída {result.returncode}\n"
-            + ((result.stdout + result.stderr).strip() or "build concluído"),
+            text=f"exit code {result.returncode}\n"
+            + ((result.stdout + result.stderr).strip() or "build finished"),
         )
         dialog.run()
         dialog.destroy()

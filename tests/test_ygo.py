@@ -152,6 +152,16 @@ class TestScriptTables(unittest.TestCase):
         assert m[0x8D390] == 0x98AC0
         assert next(x for x in us if x.offset == 0x98AC0).body.startswith("Excuse me!")
 
+    def test_match_script_deduplica_blocos_e_ignora_ponteiros_internos(self):
+        jp = extract_script(Rom(JP))
+        us = extract_script(Rom(US))
+        m = match_script(jp, us)
+        assert len(m.values()) == len(set(m.values()))
+        assert m[0x90FE0] == 0xB11B4
+        assert next(x for x in us if x.offset == 0xB11B4).body.startswith("My tactics are enough")
+        for internal in (0x91019, 0x91538, 0x97575, 0xAA617, 0xADB08):
+            assert internal not in m
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -178,8 +178,11 @@ def match_script(jp: list[ScriptString], us: list[ScriptString]) -> dict[int, in
     """Offset da string JP → offset da variante inglesa na ROM US.
 
     Casa o bloco inteiro quando possível; senão casa página a página (`$p`) e
-    devolve o offset do segmento inglês alinhado.
+    devolve o offset do segmento inglês alinhado. Cada bloco US casa no máximo
+    uma vez; ponteiros JP internos são ignorados (a entrada do início do bloco
+    já cobre o texto).
     """
+    jp = sorted(jp, key=lambda string: string.offset)
     us = sorted(us, key=lambda string: string.offset)
     whole: dict[tuple[str, str], list[ScriptString]] = {}
     pages: dict[tuple[str, str], list[tuple[ScriptString, int]]] = {}
@@ -194,17 +197,34 @@ def match_script(jp: list[ScriptString], us: list[ScriptString]) -> dict[int, in
                 pages.setdefault((prefix, key), []).append((string, index))
                 page_bodies.setdefault(key, []).append((string, index))
     positions = {string.offset: index for index, string in enumerate(us)}
+    end = 0
+    internal = set()
+    for string in jp:
+        if string.offset < end:
+            internal.add(string.offset)
+        end = max(end, string.offset + cp932_len(string.prefix + string.body) + 1)
+    used: set[int] = set()
     matched: dict[int, int] = {}
     for string in jp:
-        # Sem prefixo não há como distinguir a variante inglesa no bloco US.
-        if not string.prefix or not contains_japanese(string.body):
+        # Sem prefixo não há como distinguir a variante inglesa no bloco US;
+        # ponteiro interno é alias do início do bloco.
+        if (
+            not string.prefix
+            or string.offset in internal
+            or not contains_japanese(string.body)
+        ):
             continue
         candidates = whole.get((string.prefix, _script_key(string.body)))
-        if candidates:
+        while candidates:
             us_jp = candidates.pop(0)
+            if us_jp.offset in used:
+                continue
             english = _english_before(us, positions[us_jp.offset], us_jp)
             if english is not None:
+                used.add(us_jp.offset)
                 matched[string.offset] = english.offset
+            break
+        if string.offset in matched:
             continue
         for _, prefix, body in _segments(string.prefix + string.body):
             if not body:
@@ -214,13 +234,21 @@ def match_script(jp: list[ScriptString], us: list[ScriptString]) -> dict[int, in
             if not candidates:
                 # Prefixos de página variam por controle de fluxo; aceita corpo
                 # único sem prefixo igual para não perder a variante inglesa.
-                unique = page_bodies.get(key, [])
-                candidates = unique if len(unique) == 1 else None
-            if not candidates:
+                candidates = page_bodies.get(key, []) if len(page_bodies.get(key, [])) == 1 else None
+            chosen = None
+            if candidates:
+                for candidate in candidates:
+                    if candidate[0].offset not in used:
+                        chosen = candidate
+                        break
+                if chosen is not None:
+                    candidates.remove(chosen)
+            if chosen is None:
                 continue
-            us_jp, segment = candidates.pop(0)
+            us_jp, segment = chosen
             english = _english_before(us, positions[us_jp.offset], us_jp)
             if english is not None:
+                used.add(us_jp.offset)
                 matched[string.offset] = _english_offset(us_jp, english, segment)
             break
     return matched

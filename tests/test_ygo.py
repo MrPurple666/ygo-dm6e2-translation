@@ -176,6 +176,10 @@ class TestBuild(unittest.TestCase):
             assert jp.sha256() == EXPECTED_JP_SHA
             assert patched.size == 16777216
             assert report["jp_characters_remaining"] == 0
+            assert report["untranslated_ui_remaining"] == 0
+            assert report["binary_false_positives"] > 0
+            assert b"There are no cards." in patched.data
+            assert b"Warrior" in patched.data
             assert report["pointer_updates_valid"] is True
             assert report["pointer_updates"] > 0
             assert report["size_ok"] and report["cards_ok"]

@@ -832,5 +832,875 @@
       "en": "$fib$g(1,c,1)$g(2,L,1)$r7Hi, I'm $r2Yugi Muto$r7.\nDo you play $r6Duel Monsters$r7 too?\nIf you win a $r5duel$r7, $c$p\nyou get a card.$c$p\nChibi Maruko-chan is starting~\nChibi Maruko-chan is starting~\nChibi Maruko-chan is starting~\nChibi Maruko-chan is starting~\n$c$p\nChibi Maruko-chan is starting~\nChibi Maruko-chan is starting~\nChibi Maruko-chan is starting~\nChibi Maruko-chan is starting~\n",
       "source": "Manual translation of JP text"
     }
+  },
+  "ui": {
+    "0XAFE44": {
+      "en": "Piposaru",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB0E44": {
+      "en": "]",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB1170": {
+      "en": "@2\"",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB1178": {
+      "en": "\"@0's effect has been @3activated@0.\n@3Chain@0?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB11B0": {
+      "en": "\"@0 has been @3activated@0.\n@3Chain@0?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB12CC": {
+      "en": "@0@3Special Summon@0 to the field?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB12EC": {
+      "en": "Your opponent played @2Swift Gaia the Fierce Knight@0 and @3Special Summoned@0 it. @2Graveyard@0: @3Special Summon@0 a monster?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB1C30": {
+      "en": "?????",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB1C44": {
+      "en": "There are no cards.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB1CC0": {
+      "en": "@2Offer a Tribute@0: select @3Kuriboh@0.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB1D88": {
+      "en": "@3Axe of Despair@0 was sent to the Graveyard.\nOffer a @2Tribute@0 to return a card to the Deck?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB1DE0": {
+      "en": "@0 was sent to the Graveyard.\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB1DFC": {
+      "en": "Pay @22500 LP@0 to return the card to the Deck?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB1F04": {
+      "en": "Add @3Thunder Dragon@0 from the Deck to your hand?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB2024": {
+      "en": "Put a @2Dragon-Type monster@0 on the field with @3Special Summon@0?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB2084": {
+      "en": "@2Special Summon@0: select the @3Dragon-Type monster@0 from your hand.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB21AC": {
+      "en": "@2ATK@3",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB21B8": {
+      "en": "@0 has multiple @2face-up Attack Position monsters@0 on the opponent's field. Select the monster to destroy.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB2238": {
+      "en": "There are @30@0 cards remaining.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB2400": {
+      "en": "@0@2to the field",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB240C": {
+      "en": "Special Summon",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB2418": {
+      "en": "Set",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB2420": {
+      "en": "@0 it?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB2488": {
+      "en": "@3Duke: @2Dice Roll!@0",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB24E0": {
+      "en": "@2Tribute Dark Magician@0 to @3Special Summon@0 @2Dark Sage@0?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB256C": {
+      "en": "Select the @Dark Magician@0 to offer as a Tribute",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB2704": {
+      "en": "Add @3Gazelle the King of Mythical Beasts@0 from your Deck to your hand?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB273C": {
+      "en": "@0 was sent to the Graveyard. @3Equip@0 this card to a monster on the field?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB2784": {
+      "en": "Select the monster that @0 will @3equip@0",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB27EC": {
+      "en": "Select the monster to equip with @3Mask of Remnants@0.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB2820": {
+      "en": "@2Call@0 heads or tails.\n    @3Heads@0\n    @2Tails@0\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB28A4": {
+      "en": "Place @3Parasite Paracide@0 at the top of the Deck?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB28D8": {
+      "en": "Pay @31000 LP@0 during your next @2Standby Phase@0 to Special Summon @3Revival Jam@0?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB2D80": {
+      "en": "Select 3 monsters to use as @2Fusion Material@0.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB309C": {
+      "en": "@0Designate the @3Dragon-Type monster@0 you wish to destroy.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3158": {
+      "en": "Designate 1 @2face-down card on your opponent's side@0 as the target.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB33BC": {
+      "en": "Designate @21@0 monster as the target.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB36EC": {
+      "en": "@2\"",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB36F4": {
+      "en": "\"@0 Designate the monster to redirect the target to.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB375C": {
+      "en": "Select the monster to which @0 will be transferred.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3970": {
+      "en": "Designate a face-up @3Summoned Skull@0 or a @2Thunder-Type@0 monster @0on your field.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB39CC": {
+      "en": "Select the opponent's @3Machine-Type@2 monster@0 you wish to control.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3A0C": {
+      "en": "Select the @2attack target@0: choose @3Revival Jam@0.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3C20": {
+      "en": "@0@2 monster(s) to remove from the Graveyard",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3C44": {
+      "en": "@0Select monster(s)",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3C58": {
+      "en": "@0@2 remaining",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3C64": {
+      "en": "@0 monster(s).",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3D04": {
+      "en": "@2You@0",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3D14": {
+      "en": "@2Your opponent@0",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3D20": {
+      "en": "@3Summoned@0 a monster.\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3D40": {
+      "en": "@3Flip Summoned@0 a monster.\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3D64": {
+      "en": "@3Special Summoned@0 a monster.\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3D88": {
+      "en": "@3Set@0 a monster.\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3DA8": {
+      "en": "@0Attack target: @3",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3DC4": {
+      "en": "@0/@2DEF",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3DD0": {
+      "en": "@0)\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB3E80": {
+      "en": "@3Declared battle@0.\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4124": {
+      "en": "Discarded @2a card@0 from the hand.\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB413C": {
+      "en": "A monster on the field was sent to the @2Graveyard@0.\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4194": {
+      "en": "@2\"",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB419C": {
+      "en": "\"@0's effect has been @3activated@0.\n@3Chain@0?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB41D4": {
+      "en": "\"@0 has been @3activated@0.\n@3Chain@0?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB42CC": {
+      "en": "Return from the @2Graveyard@0 @3Killer Snake@0 to your hand?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4430": {
+      "en": "@2\"",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4438": {
+      "en": "\"@0 to @3Special Summon@0: select @2Petit Moth@0 as @2Tribute@0.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4484": {
+      "en": "\"@0 to @3Special Summon@0: select @2Labyrinth Wall@0 as @2Tribute@0.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB44E4": {
+      "en": "Field @3",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB44EC": {
+      "en": "Offer @0 as a @2Tribute@0.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB450C": {
+      "en": "From the field or hand, @3",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB451C": {
+      "en": "From the hand, @3",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4528": {
+      "en": "From the field, @3",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4534": {
+      "en": "@2Your field@0",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4544": {
+      "en": "@2Graveyard@0",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4550": {
+      "en": "Select @3Fiend-Type@2 monsters@0: @23@0 to remove.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB458C": {
+      "en": "2 cards remaining.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB459C": {
+      "en": "1 card remaining.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB45AC": {
+      "en": "Select @3LIGHT@2 monsters@0: @22@0 to remove.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB45E8": {
+      "en": "to remove: @3",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB45F8": {
+      "en": "FIRE",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB45FC": {
+      "en": "WATER",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4600": {
+      "en": "EARTH",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4604": {
+      "en": "WIND",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4608": {
+      "en": "Select the @2monster@0 Attribute.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB462C": {
+      "en": "Select @2Grand Tiki Elder@0 or @2Melchid the Four-Face Beast@0 from the field as a Tribute.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4688": {
+      "en": "Select @2Grand Tiki Elder@0 from the field as a Tribute.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB46CC": {
+      "en": "Select @2Melchid the Four-Face Beast@0 from the field as a Tribute.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB48FC": {
+      "en": "@2Call the coin toss@0.\n    @3Heads@0\n    @2Tails@0\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4940": {
+      "en": "@0 was selected as the @3attack target@0.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4964": {
+      "en": "@2Activate this effect@0 to @3reduce@0 the opponent's @3ATK@0 to 0?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB499C": {
+      "en": "@2Activate this effect@0 to @3redirect@0 the attack to another monster?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB49E4": {
+      "en": "Received @3battle damage@0.\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4A04": {
+      "en": "Discard from your @2hand@0: @3Kuriboh@0 to",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4A28": {
+      "en": "reduce the damage to @30@0?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4A48": {
+      "en": "Pay @3500 LP@0 to give @3Mushroom Man@0 to your opponent?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4B64": {
+      "en": "@3Duke: @2Dice Roll!@0",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4B88": {
+      "en": "To keep @0 on the field, @3",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4BA4": {
+      "en": "LP@0 is required. Pay the maintenance cost?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4BD0": {
+      "en": "To keep @0 on the field",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4BE8": {
+      "en": "@3One Tribute@0 is required.\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4C04": {
+      "en": "Offer a monster as a Tribute?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4C54": {
+      "en": "@2\"",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4C5C": {
+      "en": "@2\"@0 has @3",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4C6C": {
+      "en": "@0; it will be destroyed in that many turns",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4C84": {
+      "en": "@3Weevil: @0I'll fill the field with my cute babies!!",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4CC8": {
+      "en": "@0 was selected as the attack target.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4CE8": {
+      "en": "@2Activate this effect@0 to @3reduce@0 the opponent's @3ATK@0 to 0?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4D20": {
+      "en": "Received @3battle damage@0.\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4D40": {
+      "en": "Discard from your @2hand@0: @3Kuriboh@0 to",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4D64": {
+      "en": "reduce the damage to @30@0?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4D84": {
+      "en": "@2Activate this effect@0 to @3redirect@0 the attack to another monster?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB4DCC": {
+      "en": "@2Activate this effect@0 to @3redirect@0 the @3attack target@0 to another monster?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5034": {
+      "en": "WIND",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5038": {
+      "en": "EARTH",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB503C": {
+      "en": "FIRE",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5040": {
+      "en": "WATER",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5044": {
+      "en": "DARK",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5048": {
+      "en": "LIGHT",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB504C": {
+      "en": "Attribute",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB50AC": {
+      "en": "  ",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB50B4": {
+      "en": "Attribute\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB50E8": {
+      "en": "Reorder the cards.\n@2Controls:@0\n  @3D-Pad@0 selects a card\n  @3L/R Buttons@0 swap cards",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB52F8": {
+      "en": "[%4d] Add \"%s\"\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB530C": {
+      "en": "%04d: Remove %s\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB533C": {
+      "en": "Many Magic cards\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5348": {
+      "en": "Many Trap cards\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5354": {
+      "en": "Many high-level monsters\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5364": {
+      "en": "Many Continuous/Equip cards\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5378": {
+      "en": "Many revival cards\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5388": {
+      "en": "Many draw cards\n",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5398": {
+      "en": "Draw-focused:",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB53A8": {
+      "en": "Revival-focused:",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB54FC": {
+      "en": "@3Mokuba: @0Big Bro taught me this @2combo@0!",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5538": {
+      "en": "@3Kaiba: @0Hmph. Is that all?\nThen I'll end this duel this turn.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5584": {
+      "en": "@3Kaiba: @0Wahahahaha! How's this?!\nBehold the strongest, most magnificent ultimate killing machine!",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB55E0": {
+      "en": "@3Kaiba: @0It seems I was mistaken.\nYou are not the duelist I was looking for.",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB565C": {
+      "en": "@3Mai: @0I'll let you experience my hellish harem!",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5694": {
+      "en": "@3Pegasus: @0Do you like @2Toons@0?",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB56C8": {
+      "en": "@3Pegasus: @0Is that so? I love them too!",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB56F8": {
+      "en": "@3Pegasus: @0Is that so? That's a shame...",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5730": {
+      "en": "  T    ",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB574C": {
+      "en": "T     ",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB5754": {
+      "en": "Fusion Deck:    cards",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB577C": {
+      "en": "Deck:    cards",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB579C": {
+      "en": "Graveyard:    cards",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB57AC": {
+      "en": "Opponent's Graveyard:    cards",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB57C0": {
+      "en": "Removed cards:    cards",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB57D4": {
+      "en": "Opponent's removed cards:    cards",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6310": {
+      "en": "4000",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB631C": {
+      "en": "X000",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6328": {
+      "en": "????",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB63C8": {
+      "en": "0123456789",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6494": {
+      "en": "Save buffer %d to %d (simultaneous)",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB64B4": {
+      "en": "Output %d bytes of buffer %d from %d",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB64D8": {
+      "en": "Save %d bytes of buffer %d to %d",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6508": {
+      "en": "Sat",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB650C": {
+      "en": "Fri",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6510": {
+      "en": "Thu",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6514": {
+      "en": "Wed",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6518": {
+      "en": "Tue",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB651C": {
+      "en": "Mon",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6520": {
+      "en": "Sun",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6524": {
+      "en": "Champion Final",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6538": {
+      "en": "Champion Semifinal",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB654C": {
+      "en": "Champion Round 1",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6560": {
+      "en": "Challenge Final",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6570": {
+      "en": "Challenge Semifinal",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6584": {
+      "en": "Challenge Round 1",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6598": {
+      "en": "Champ Preview",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB65A8": {
+      "en": "Champ Declaration",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB65B8": {
+      "en": "Challenge Preview",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB65C8": {
+      "en": "Challenge Declaration",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB65D8": {
+      "en": "Duel Tournament",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB65E8": {
+      "en": "Ghouls Activity Begins",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB65FC": {
+      "en": "Ghouls Attack",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB660C": {
+      "en": "Target Duel",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6628": {
+      "en": "Day",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6C8C": {
+      "en": "Marik",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6C94": {
+      "en": "Pegasus",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6CA0": {
+      "en": "Shadi",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6CB0": {
+      "en": "Yugi Muto",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6CBC": {
+      "en": "Seto Kaiba",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6CC8": {
+      "en": "Ryo Bakura",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6CD4": {
+      "en": "Reshid",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6CDC": {
+      "en": "Masks of Light and Darkness",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6CEC": {
+      "en": "Marik's Marionette",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6CFC": {
+      "en": "Pandora",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6D08": {
+      "en": "Rare Hunter",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6D18": {
+      "en": "Duke Devlin",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6D24": {
+      "en": "Bandit Keith",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6D38": {
+      "en": "Joey Wheeler",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6D48": {
+      "en": "Mai Valentine",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6D54": {
+      "en": "Weevil Underwood",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6D68": {
+      "en": "Mako Tsunami",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6D74": {
+      "en": "Espa Roba",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6D84": {
+      "en": "Rex Raptor",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6D94": {
+      "en": "Solomon Muto",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6DA0": {
+      "en": "Tea Gardner",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6DAC": {
+      "en": "Mokuba Kaiba",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6DBC": {
+      "en": "Passerby",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6DC4": {
+      "en": "Unknown",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6DD4": {
+      "en": "KC Cup",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6DE0": {
+      "en": "Challenge Cup",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6DF4": {
+      "en": "Duel Tournament",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6E04": {
+      "en": "Final",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6E0C": {
+      "en": "Semifinal",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6E14": {
+      "en": "Round 1",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6E1C": {
+      "en": "Card Restriction Exam",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6E2C": {
+      "en": "DEF Limit Exam",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6E3C": {
+      "en": "ATK Limit Exam",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6E4C": {
+      "en": "Level Limit Exam",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6E5C": {
+      "en": "Type Limit Exam",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6E6C": {
+      "en": "No Magic/Trap",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6E7C": {
+      "en": "No Magic",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6E88": {
+      "en": "No Effect Monsters",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6E94": {
+      "en": "Under 1000",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6EA4": {
+      "en": "Level 4 or below",
+      "source": "Manual translation of JP UI text"
+    },
+    "0XB6ED0": {
+      "en": "Warrior/Beast-Warrior",
+      "source": "Manual translation of JP UI text"
+    }
   }
 }

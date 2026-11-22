@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -30,6 +31,14 @@ FREE_END = 0xFFFFFF
 NAME_MAX = OFFSETS["NAME_STRIDE"] - 1
 DESC_MAX = OFFSETS["DESC_MAX_BYTES"]
 IPS_MAX = 0xFFFF
+
+# Faixa de UI sem prefixo $ na ROM JP e blocos JP/EN correspondentes na US.
+UI_START = 0xAFE44
+UI_END = 0xB6ED0
+US_UI_JP = (0x36B300, 0x36ECD0)
+US_UI_EN = (0x36F0DA, 0x373000)
+# Deslocamentos entre literais JP e EN na mesma função da ROM US.
+UI_POINTER_DELTAS = (0x04, 0x24, 0x2C, 0x30, 0x34, 0x38, 0x3C, 0x40, 0x44, 0x48, 0x4C, 0x50, 0x54, 0x58, 0x64)
 
 ROOT = Path(__file__).resolve().parent.parent
 MANUAL = ROOT / "data" / "manual.json"
@@ -129,6 +138,44 @@ def _us_text_at(rom: Rom, offset: int) -> str:
     return decode(rom.data[start:end])
 
 
+def _ui_key(text: str) -> str:
+    """Normaliza UI para casar JP da ROM JP com o bloco JP da ROM US."""
+    text = re.sub(r"@\d", "", text).replace("%s", "¤").replace("%d", "¤")
+    text = unicodedata.normalize("NFKC", text)
+    return re.sub(r"[\s。、．，・！？…「」【】（）()\-—―]", "", text)
+
+
+def _us_ui_map(us: Rom) -> dict[str, str]:
+    """JP da UI (US) → inglês, via literais pareados na mesma função."""
+    data = us.data
+    jp_pointers: dict[int, list[int]] = {}
+    en_at: dict[int, int] = {}
+    for pos in range(0, len(data) - 3, 4):
+        target = int.from_bytes(data[pos : pos + 4], "little") - 0x08000000
+        if US_UI_JP[0] <= target < US_UI_JP[1]:
+            jp_pointers.setdefault(target, []).append(pos)
+        elif US_UI_EN[0] <= target < US_UI_EN[1]:
+            en_at[pos] = target
+    mapping: dict[str, str] = {}
+    for target, positions in jp_pointers.items():
+        end = data.find(b"\x00", target)
+        if end < 0:
+            continue
+        key = _ui_key(decode(data[target:end]))
+        for position in positions:
+            found = None
+            for delta in UI_POINTER_DELTAS:
+                if position + delta in en_at:
+                    found = en_at[position + delta]
+                    break
+            if found is not None:
+                english = data.find(b"\x00", found)
+                if english >= 0:
+                    mapping.setdefault(key, decode(data[found:english]))
+                break
+    return mapping
+
+
 def build_table(jp: Rom, us: Rom) -> TranslationTable:
     manual = _load_manual(MANUAL)
     overrides = _load_manual(MANUAL_DESCRIPTIONS)
@@ -204,25 +251,44 @@ def build_table(jp: Rom, us: Rom) -> TranslationTable:
     us_script = extract_script(us)
     script_match = match_script(jp_script, us_script)
     manual_script = manual.get("script", {})
+    manual_ui = manual.get("ui", {})
+    ui_map = _us_ui_map(us)
     pointers = _find_pointers(jp.data)
     free = FREE_START
 
     script_ported = script_manual = script_relocated = 0
+    ui_ported = ui_manual = 0
     for start, stop, text in _blocks(jp_script):
-        if not contains_japanese(text) or not text.startswith("$"):
+        is_script = text.startswith("$")
+        is_ui = UI_START <= start <= UI_END and not is_script
+        if not contains_japanese(text) or not (is_script or is_ui):
             continue
         manual_entry = manual_script.get(f"{start:#X}") or manual_script.get(f"{start:X}")
-        if start in script_match:
+        if is_script and start in script_match:
             english = _us_text_at(us, script_match[start])
             source = "portado: Worldwide Edition"
             script_ported += 1
-        elif manual_entry is not None:
+        elif is_script and manual_entry is not None:
             english, source = manual_entry["en"], manual_entry["source"]
             script_manual += 1
+        elif is_ui and _ui_key(text) in ui_map:
+            english = ui_map[_ui_key(text)]
+            source = "portado: UI Worldwide Edition"
+            ui_ported += 1
+        elif is_ui and (manual_ui.get(f"{start:#X}") or manual_ui.get(f"{start:X}")):
+            entry = manual_ui.get(f"{start:#X}") or manual_ui.get(f"{start:X}")
+            english, source = entry["en"], entry["source"]
+            ui_manual += 1
         else:
-            raise ValueError(f"script sem tradução manual em {start:#X}: {text[:60]!r}")
+            kind = "script" if is_script else "ui"
+            raise ValueError(f"{kind} sem tradução manual em {start:#X}: {text[:60]!r}")
         if contains_japanese(english):
             raise ValueError(f"tradução com japonês em {start:#X}")
+        if is_ui and source.startswith("Manual"):
+            jp_tokens = re.findall(r"@\d", unicodedata.normalize("NFKC", text))
+            en_tokens = re.findall(r"@\d", unicodedata.normalize("NFKC", english))
+            if jp_tokens != en_tokens:
+                raise ValueError(f"tokens de UI alterados em {start:#X}")
 
         old_len = stop - start
         replacement = encode(english) + b"\x00"
@@ -280,12 +346,16 @@ def build_table(jp: Rom, us: Rom) -> TranslationTable:
         "script_blocks": script_ported + script_manual,
         "script_ported": script_ported,
         "script_manual": script_manual,
+        "ui_blocks": ui_ported + ui_manual,
+        "ui_ported": ui_ported,
+        "ui_manual": ui_manual,
         "script_relocated": script_relocated,
         "pointer_updates": len(table.pointer_updates),
         "manual_keys": {
             "names": sorted(manual_names),
             "descriptions": sorted(manual_desc),
             "script": sorted(manual_script),
+            "ui": sorted(manual_ui),
         },
     }
     return table
@@ -319,10 +389,19 @@ def verify(jp: Rom, us: Rom, patched: Rom, table: TranslationTable) -> dict:
     descriptions = extract_jp_descriptions(patched)
     script = extract_script(patched)
     prefixed = [item for item in script if item.prefix]
-    remaining = sum(contains_japanese(item.body) for item in prefixed)
-    unprefixed = sum(
-        contains_japanese(item.body) for item in script if not item.prefix
-    )
+    ui = [
+        item
+        for item in script
+        if not item.prefix and UI_START <= item.offset <= UI_END
+    ]
+    binary = [
+        item
+        for item in script
+        if not item.prefix and not (UI_START <= item.offset <= UI_END)
+    ]
+    ui_remaining = sum(contains_japanese(item.body) for item in ui)
+    remaining = sum(contains_japanese(item.body) for item in prefixed) + ui_remaining
+    false_positives = sum(contains_japanese(item.body) for item in binary)
 
     pointer_valid = True
     for position, value in table.pointer_updates.items():
@@ -355,7 +434,9 @@ def verify(jp: Rom, us: Rom, patched: Rom, table: TranslationTable) -> dict:
         "size": patched.size,
         "size_ok": patched.size == ROM_SIZE,
         "jp_characters_remaining": remaining,
-        "unprefixed_japanese_remaining": unprefixed,
+        "untranslated_ui_remaining": ui_remaining,
+        "unprefixed_japanese_remaining": ui_remaining,
+        "binary_false_positives": false_positives,
         "pointer_updates_valid": pointer_valid,
         "pointer_updates": len(table.pointer_updates),
         "card_count": len(names),
@@ -364,6 +445,7 @@ def verify(jp: Rom, us: Rom, patched: Rom, table: TranslationTable) -> dict:
             "names": table.report.get("names_manual", 0),
             "descriptions": table.report.get("descriptions_manual", 0),
             "script": table.report.get("script_manual", 0),
+            "ui": table.report.get("ui_manual", 0),
         },
         "build": table.report,
         "ips_bytes": None,

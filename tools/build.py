@@ -30,19 +30,22 @@ def main() -> int:
     report = verify(jp, us, patched, table)
     report["ips_bytes"] = args.ips.stat().st_size
     report["jp_characters_remaining_scope"] = (
-        "nomes + descrições de cartas + blocos de script com prefixo $... "
-        "(extract_script filtra por prefixo; strings sem prefixo em "
-        "unprefixed_japanese_remaining são a limitação registrada)"
+        "nomes + descrições de cartas + blocos de script com prefixo $... + "
+        "UI sem prefixo na faixa 0xAFE44..0xB6ED0"
+    )
+    report["binary_false_positives_scope"] = (
+        "strings japonesas sem prefixo fora da faixa de UI (ponteiros "
+        "coincidentes em código/dados); excluídas da meta de tradução"
     )
     report["manual_schema"] = {
         "file": "data/manual.json",
         "names": "índice JP (string) -> {en, source}",
         "descriptions": "índice do slot JP (string) -> {en, source}",
         "script": "offset do bloco JP em hexadecimal (string) -> {en, source}",
+        "ui": "offset do bloco de UI em hexadecimal (string) -> {en, source}",
         "note": (
-            "Strings sem prefixo $... não são traduzidas: a ROM US não permite "
-            "identificar a variante inglesa sem o agrupamento de tokens. "
-            "unprefixed_japanese_remaining quantifica essa limitação."
+            "UI sem prefixo é portada da ROM US por casamento do japonês e "
+            "literais pareados; o que não casa usa data/manual.json['ui']."
         ),
     }
     args.report.write_text(

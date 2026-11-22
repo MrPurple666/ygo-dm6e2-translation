@@ -1,14 +1,39 @@
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
 
+from tools.editor import EditorWindow, SECTIONS, apply_edit, combine_data, filter_rows
 from tools.editor_core import (
     load_overrides,
     load_translations,
     save_translations,
     validate_entry,
 )
+
+
+class TestEditorView(unittest.TestCase):
+    def test_filter_rows_by_query(self):
+        data = {"names": {"0": {"en": "Aqua Snake"}, "1": {"en": "Dark Magician"}}}
+        assert filter_rows(data, "names", "aqua") == [("0", "Aqua Snake")]
+
+    def test_apply_edit_updates_entry(self):
+        data = {"names": {"0": {"en": "Old"}}}
+        updated = apply_edit(data, "names", "0", "New")
+        assert updated["names"]["0"] == {"en": "New", "source": "edited in editor"}
+
+    def test_combine_data_adds_overrides_section(self):
+        manual = {"names": {}}
+        overrides = {"5": {"en": "Short"}}
+        assert combine_data(manual, overrides)["overrides"] == overrides
+
+    @unittest.skipUnless(os.environ.get("DISPLAY"), "requires X11")
+    def test_window_loads_real_data(self):
+        window = EditorWindow()
+        assert set(SECTIONS) == {"names", "descriptions", "script", "ui", "overrides"}
+        assert len(window._page("names")["store"]) > 0
+        window.destroy()
 
 
 class TestEditorCore(unittest.TestCase):

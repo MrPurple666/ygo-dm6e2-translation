@@ -17,10 +17,12 @@ from ygo.tables import (
     OFFSETS,
     extract_jp_descriptions,
     extract_names,
+    extract_script,
     extract_us_language_block,
     find_overflows,
     match_descriptions,
     match_names,
+    match_script,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -117,6 +119,27 @@ class TestDescriptionTables(unittest.TestCase):
         manual = json.loads(MANUAL_DESCRIPTIONS.read_text())
         assert sorted(int(k) for k in manual) == over
         assert all(cp932_len(manual[str(i)]) <= 383 for i in over)
+
+
+class TestScriptTables(unittest.TestCase):
+    def test_extract_script_encontra_ponteiro_e_string(self):
+        rom = Rom(JP)
+        jp = extract_script(rom)
+        s = next(x for x in jp if x.offset == 0x8CDBC)
+        assert s.prefix == "$g(1,L,1)$fit$i"
+        assert s.body.startswith("グールズが立ち去った後")
+        data = rom.data
+        assert any(  # ponteiro existe na ROM JP
+            int.from_bytes(data[i : i + 4], "little") == 0x0808CDBC
+            for i in range(0, 0x200000, 4)
+        )
+
+    def test_match_script_ancora(self):
+        jp = extract_script(Rom(JP))
+        us = extract_script(Rom(US))
+        m = match_script(jp, us)
+        assert m[0x8CDBC] == 0x96838
+        assert us[[x.offset for x in us].index(m[0x8CDBC])].body.startswith("After the Ghouls departed")
 
 
 if __name__ == "__main__":

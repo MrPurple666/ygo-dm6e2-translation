@@ -6,8 +6,8 @@ import re
 
 ENCODING = "cp932"
 
-# `$` + nome; args entre parênteses; `$t`/`$r` levam um dígito solto.
-_TOKEN = r"\$(?:[tTrR]\d|[A-Za-z]+(?:\([^)]*\))?)"
+# `$` + código: `$t2`/`$r1`, nomes de 3 letras conhecidos, letra com args, letra solta.
+_TOKEN = r"\$(?:(?:[tTrR]\d)|(?:fot|fib|fit|fob)|[A-Za-z]\([^)]*\)|[A-Za-z]\d?)"
 _CONTROL_PREFIX = re.compile(rf"^(?:{_TOKEN})+")
 _JAPANESE = re.compile(
     r"[\u3000-\u303f\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff01-\uff60\uff66-\uff9f]"

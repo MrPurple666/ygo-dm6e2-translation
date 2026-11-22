@@ -11,6 +11,7 @@ from ygo import (
     encode,
     write_ips,
 )
+from ygo.tables import OFFSETS, extract_names, match_names
 
 ROOT = Path(__file__).resolve().parent.parent
 JP = Path(os.environ.get("YGO_JP_ROM", ROOT / "Yu-Gi-Oh! Duel Monsters 6 Expert 2 (Japan).gba"))
@@ -56,6 +57,22 @@ class TestPrimitives(unittest.TestCase):
             assert raw[5:8] == (0x123).to_bytes(3, "big")
             assert raw[8:10] == (3).to_bytes(2, "big")
             assert raw[10:13] == b"ABC" and raw[-3:] == b"EEE"
+
+
+class TestNameTables(unittest.TestCase):
+    def test_nomes_jp_e_us(self):
+        jp = extract_names(Rom(JP), OFFSETS["JP_NAME"], 1115)
+        us = extract_names(Rom(US), OFFSETS["US_NAME"], 1086)
+        assert len(jp) == 1115 and len(us) == 1086
+        assert jp[0] == "地縛霊" and us[0] == "Earthbound Spirit"
+        assert jp[-1] == "スライムモンスタートークン"
+
+    def test_casamento_de_nomes(self):
+        jp = extract_names(Rom(JP), OFFSETS["JP_NAME"], 1115)
+        us_jp = extract_names(Rom(US), OFFSETS["US_JPNAME"], 1086)
+        m = match_names(jp, us_jp)
+        assert len(m) == 1083
+        assert m[0] == 0 and m[1] == 1
 
 
 if __name__ == "__main__":

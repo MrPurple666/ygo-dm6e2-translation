@@ -7,7 +7,7 @@ import re
 ENCODING = "cp932"
 
 # `$` + código: `$t2`/`$r1`, nomes de 3 letras conhecidos, letra com args, letra solta.
-_TOKEN = r"\$(?:(?:[tTrR]\d)|(?:fot|fib|fit|fob)|[A-Za-z]\([^)]*\)|[A-Za-z]\d?)"
+_TOKEN = r"\$(?:(?:[tTrR][0-9])|(?:fot|fib|fit|fob)|[A-Za-z]\([^)]*\)|[A-Za-z][0-9]?)"
 _CONTROL_PREFIX = re.compile(rf"^(?:{_TOKEN})+")
 _TOKEN_RE = re.compile(_TOKEN)
 _MARKUP_RE = re.compile(rf"{_TOKEN}|%[-+ 0-9.#]*[diouxXcsfg]|@[0-9]")
@@ -15,7 +15,7 @@ _MARKUP_RE = re.compile(rf"{_TOKEN}|%[-+ 0-9.#]*[diouxXcsfg]|@[0-9]")
 _JAPANESE = re.compile(
     r"[\u3001-\u303f\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f]"
 )
-_BREAKS = re.compile(r"\$[ncp]\d?|[ \u3000\u00a0\r\n\t]")
+_BREAKS = re.compile(r"\$[ncp][0-9]?|[ \u3000\u00a0\r\n\t]")
 
 
 def decode(raw: bytes) -> str:
@@ -111,7 +111,9 @@ def paginate_script(
     words: list[list[str]] = [[]]
     for kind, value in atoms:
         if kind == "t":
-            if value == "$n":  # quebra do texto US: sai, o espaço já está no texto
+            if value == "$n":  # vira separador de palavras, não some
+                if words[-1]:
+                    words.append([])
                 continue
             if value in ("$c", "$p"):  # fim de página: vira separador de palavras
                 if words[-1]:

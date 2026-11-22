@@ -172,11 +172,13 @@ class TestScriptTables(unittest.TestCase):
 class TestPagination(unittest.TestCase):
     def test_pagina_preserva_letras_e_separa_com_espaco(self):
         original = (
-            "$t1Duelists!! Welcome, contestants, to the Battle City tournament! "
-            "We will be monitoring your current location by means of "
+            "$t1Duelists!!$nWelcome, contestants, to the Battle City tournament! "
+            "We will be monitoring your current location by$nmeans of "
             "the duelists around you.$c$fot"
         )
         paginated = paginate_script(fullwidth_script(original))
+        assert fullwidth("Duelists!!") + fullwidth("Welcome") not in paginated
+        assert fullwidth("by") + fullwidth("means") not in paginated
         assert "$c$p\u3000" in paginated
         assert "$c$pD" not in paginated
         strip = lambda text: "".join(
@@ -184,7 +186,7 @@ class TestPagination(unittest.TestCase):
             for ch in unicodedata.normalize("NFKC", text)
             if ch.isalnum() or ch in ".,!?"
         )
-        tokens = re.compile(r"\$[A-Za-z]+\([^)]*\)|\$[A-Za-z]+\d?|@\d|%[diouxXcsfg]")
+        tokens = re.compile(r"\$[A-Za-z]\([^)]*\)|\$(?:fot|fib|fit|fob|[A-Za-z][0-9]?)|@[0-9]|%[diouxXcsfg]")
         assert strip(tokens.sub("", original)) == strip(tokens.sub("", paginated))
 
 

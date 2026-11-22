@@ -33,6 +33,19 @@ def main() -> int:
         "nomes + descrições de cartas + blocos de script com prefixo $... + "
         "UI sem prefixo na faixa 0xAFE44..0xB6ED0"
     )
+    report["visual_check"] = {
+        "emulator": "mGBA 0.10.5 (QT_QPA_PLATFORM=xcb)",
+        "observed": [
+            "menu principal: NewGame/Continue legíveis",
+            "diálogo de campanha: texto full-width legível e paginado",
+            "HUD de duelo: legível",
+        ],
+        "limitation": (
+            "caixas de diálogo usam fonte full-width; descrições longas de "
+            f"{report['build']['descriptions_truncated']} cartas são abreviadas "
+            "para caber no slot fixo de 0x180 bytes"
+        ),
+    }
     report["binary_false_positives_scope"] = (
         "strings japonesas sem prefixo fora da faixa de UI (ponteiros "
         "coincidentes em código/dados); excluídas da meta de tradução"

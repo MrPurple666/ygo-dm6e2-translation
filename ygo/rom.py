@@ -15,10 +15,13 @@ class Rom:
     def __init__(self, path: Path):
         self.path = Path(path)
         self._buf = bytearray(self.path.read_bytes())
+        self._snapshot: bytes | None = None
 
     @property
     def data(self) -> bytes:
-        return bytes(self._buf)
+        if self._snapshot is None:
+            self._snapshot = bytes(self._buf)
+        return self._snapshot
 
     @property
     def size(self) -> int:
@@ -63,6 +66,7 @@ class Rom:
         if offset < 0 or offset + len(payload) > self.size:
             raise ValueError(f"escrita fora da ROM: {offset:#x}+{len(payload)}")
         self._buf[offset : offset + len(payload)] = payload
+        self._snapshot = None
 
     def save(self, path: Path) -> None:
         target = Path(path)

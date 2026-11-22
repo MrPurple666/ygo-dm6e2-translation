@@ -1,0 +1,6 @@
+*.gba
+*.ips
+__pycache__/
+*.pyc
+.superpowers/
+translation-report.json

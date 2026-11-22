@@ -1,0 +1,836 @@
+{
+  "names": {
+    "122": {
+      "en": "Bait Doll",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "170": {
+      "en": "Masked Beast Des Gardius",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "263": {
+      "en": "Soul Exchange",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "273": {
+      "en": "Dreamsprite",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "322": {
+      "en": "Cipher Soldier",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "333": {
+      "en": "Electromagnetic Bagworm",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "364": {
+      "en": "Swift Gaia the Fierce Knight",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "370": {
+      "en": "Spirit Message \"I\"",
+      "source": "TCG official name; DEATH→FINAL positional mapping"
+    },
+    "371": {
+      "en": "Spirit Message \"L\"",
+      "source": "TCG official name; DEATH→FINAL positional mapping"
+    },
+    "372": {
+      "en": "Spirit Message \"N\"",
+      "source": "TCG official name; DEATH→FINAL positional mapping"
+    },
+    "373": {
+      "en": "Spirit Message \"A\"",
+      "source": "TCG official name; DEATH→FINAL positional mapping"
+    },
+    "378": {
+      "en": "Shift",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "416": {
+      "en": "Ring of Magnetism",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "439": {
+      "en": "Scapegoat",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "455": {
+      "en": "Blast Sphere",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "611": {
+      "en": "Fairy's Hand Mirror",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "628": {
+      "en": "Time Machine",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "654": {
+      "en": "Flute of Summoning Dragon",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "675": {
+      "en": "Fake Trap",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "872": {
+      "en": "Obnoxious Celtic Guard",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "895": {
+      "en": "Magic Drain",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "896": {
+      "en": "Ancient Lamp",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "1023": {
+      "en": "Last Will",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "1024": {
+      "en": "Mask of Remnants",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "1037": {
+      "en": "Fairy King Truesdale",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "1057": {
+      "en": "Rigras Leever",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "1090": {
+      "en": "Lord of D.",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "1105": {
+      "en": "The Monarchy",
+      "source": "DM6 card name (Yugipedia)"
+    },
+    "1106": {
+      "en": "Set Sail for The Kingdom",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "1107": {
+      "en": "Glory of the King's Hand",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "1108": {
+      "en": "Obelisk the Tormentor",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "1109": {
+      "en": "Slifer the Sky Dragon",
+      "source": "TCG official name (Yugipedia)"
+    },
+    "1110": {
+      "en": "The Winged Dragon of Ra",
+      "source": "TCG official name (Yugipedia)"
+    }
+  },
+  "descriptions": {
+    "43": {
+      "en": "A monster attacked by this card will be destroyed at the End Phase of the fifth turn after the attack.",
+      "source": "Worldwide Edition EN (name match)"
+    },
+    "67": {
+      "en": "At the end of each of your opponent's turns, play 1 \"Spirit Message\" card from your hand or your Deck (then reshuffle your Deck). If \"Spirit Message\" cards \"I\", \"N\", \"A\" and \"L\" are all on the field in their proper order, you are declared the winner. If any of the cards are removed from the field while constructing the message, they are all sent to your Graveyard.",
+      "source": "Worldwide Edition EN (name match)"
+    },
+    "122": {
+      "en": "Activate by targeting 1 Set card in the Spell & Trap Card Zone; reveal it. If it is a Trap Card, force its activation. If the timing is incorrect, negate its effect and destroy it. After this effect resolves, shuffle this card into the Deck instead of sending it to the Graveyard.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "170": {
+      "en": "Cannot be Special Summoned unless you Tribute 2 monsters, including \"Grand Tiki Elder\" or \"Melchid the Four-Face Beast\". When this card is sent from the field to the Graveyard, equip 1 \"Mask of Remnants\" from your Deck to a monster on the field, then shuffle your Deck.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "173": {
+      "en": "When you inflict damage to your opponent's Life Points with this card, draw 1 card from your Deck.",
+      "source": "Worldwide Edition EN (name match)"
+    },
+    "174": {
+      "en": "Any DARK monster attacked by this card is automatically destroyed. Damage calculations apply.",
+      "source": "Worldwide Edition EN (name match)"
+    },
+    "263": {
+      "en": "When you activate this card, you cannot conduct your Battle Phase this turn. You can Tribute 1 monster on your opponent's side of the field as if it were your own monster.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "273": {
+      "en": "If this card is attacked by an opponent's monster, you can treat another one of your monsters as the attack target and conduct damage calculation.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "322": {
+      "en": "When this card battles a Warrior-Type monster, its ATK and DEF each increase by 2000 points during damage calculation.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "333": {
+      "en": "FLIP: Take control of 1 Machine-Type monster your opponent controls until your next End Phase. A monster that destroys this card by battle loses 500 ATK and DEF.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "357": {
+      "en": "You may Special Summon this card by offering \"Alpha The Magnet Warrior\", \"Beta The Magnet Warrior\", and \"Gamma The Magnet Warrior\" from your hand or the field as a Tribute. If \"Alpha The Magnet Warrior\", \"Beta The Magnet Warrior\", and \"Gamma The Magnet Warrior\" are in the Graveyard, you can offer this card as a Tribute to Special Summon these 3 cards to the field.",
+      "source": "Worldwide Edition EN (name match)"
+    },
+    "364": {
+      "en": "If this card is the only card in your hand, you can Normal Summon it in face-up Attack Position without Tributing.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "378": {
+      "en": "When 1 monster you control is targeted by an opponent's Spell, Trap, or attack, you can change the target to another monster you control.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "416": {
+      "en": "The equipped monster loses 500 ATK and DEF. Your opponent can only attack the equipped monster.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "433": {
+      "en": "As long as this card remains face-up on the field, increase the ATK of all LIGHT monsters by 500 points and decrease the ATK of all DARK monsters by 400 points.",
+      "source": "Worldwide Edition EN (name match)"
+    },
+    "439": {
+      "en": "When you activate this card, you cannot Normal Summon, Flip Summon, or Special Summon this turn. Special Summon 4 \"Sheep Tokens\" (Beast/EARTH/Level 1/ATK 0/DEF 0) in Defense Position. They cannot be used as Tributes for a Tribute Summon.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "455": {
+      "en": "When this face-down Defense Position card is attacked by an opponent's monster, equip this card to the attacking monster (without damage calculation). During your opponent's next Standby Phase, destroy the equipped monster and this card, and inflict damage to your opponent equal to the equipped monster's ATK.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "496": {
+      "en": "A monster attacked by this card will be destroyed at the End Phase of the fifth turn after the attack.",
+      "source": "Worldwide Edition EN (name match)"
+    },
+    "611": {
+      "en": "When your opponent activates a Spell Card that targets 1 monster, change the target to another appropriate monster.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "628": {
+      "en": "When a monster is sent to the Graveyard by battle, you can return that monster to the field in the same battle position it was in. This is not a Summon.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "654": {
+      "en": "While \"Lord of D.\" is face-up on the field, you can Special Summon up to 2 Dragon-Type monsters from your hand to your side of the field.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "655": {
+      "en": "FLIP: Destroys 1 Trap Card on the field. If this card's target is face-down, flip it face-up. If the card is a Trap Card, it is destroyed. If not, it is returned to its face-down position. The flipped card is not activated.",
+      "source": "Worldwide Edition EN (name match)"
+    },
+    "657": {
+      "en": "When this card is changed from Attack Position to Defense Position, select and destroy 1 monster on your opponent's side of the field.",
+      "source": "Worldwide Edition EN (name match)"
+    },
+    "675": {
+      "en": "When your opponent activates a Spell, Trap, or effect that would destroy Trap Card(s) on the field, you can destroy this card instead.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "868": {
+      "en": "When this card inflicts damage to your opponent's Life Points, 1 card must be discarded randomly from your opponent's hand to the Graveyard.",
+      "source": "Worldwide Edition EN (name match)"
+    },
+    "872": {
+      "en": "This card is not destroyed by battle with a monster that has 1900 or more ATK. (Damage calculation is applied normally.)",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "895": {
+      "en": "When your opponent activates a Spell Card, you can activate this card. Your opponent can discard 1 Spell Card from their hand; if they do not, negate the activation of that Spell Card and destroy it.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "896": {
+      "en": "When this face-down Defense Position card is attacked by an opponent's monster, you can redirect the attack to 1 opponent's monster. While this card is face-up on the field, you can Special Summon \"La Jinn the Mystical Genie of the Lamp\".",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "1023": {
+      "en": "When a monster on your side of the field is sent to your Graveyard this turn, you can Special Summon 1 monster with 1500 or less ATK from your Deck.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "1024": {
+      "en": "Shuffle this card into your Deck. If this card is equipped by the effect of \"Masked Beast Des Gardius\", control of the equipped monster is transferred to the opponent of its current controller.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "1037": {
+      "en": "While this card is face-up in Defense Position on the field, all Plant-Type monsters on your side of the field gain 500 ATK and DEF.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "1057": {
+      "en": "FLIP: Each player selects and discards 1 card from their hand. A monster that destroys this card by battle loses 500 ATK and DEF.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "1058": {
+      "en": "As long as this card remains face-up on the field, increase the ATK of all FIRE monsters by 500 points and decrease the ATK of all WATER monsters by 400 points.",
+      "source": "Worldwide Edition EN (name match)"
+    },
+    "1066": {
+      "en": "Flip 1 face-down Defense Position monster face-up. If the monster's DEF is 2000 points or less, the monster is destroyed. If the DEF is more than 2000 points, return the monster to its face-down Defense Position.",
+      "source": "Worldwide Edition EN (name match)"
+    },
+    "1090": {
+      "en": "While this card is face-up on the field, Dragon-Type monsters cannot be targeted by Spell, Trap, or monster effects.",
+      "source": "Manual translation of JP text (official TCG wording)"
+    },
+    "1105": {
+      "en": "",
+      "source": "empty in JP original"
+    },
+    "1106": {
+      "en": "",
+      "source": "empty in JP original"
+    },
+    "1107": {
+      "en": "",
+      "source": "empty in JP original"
+    },
+    "1108": {
+      "en": "When he descends, a scorching gale shall sweep the earth, and every living thing shall become a corpse.",
+      "source": "Manual translation of JP flavor text"
+    },
+    "1109": {
+      "en": "In a time of chaos when thunder roars in the sky, ancient grimoires are bound within its coils, and its power knows no bounds.",
+      "source": "Manual translation of JP flavor text"
+    },
+    "1110": {
+      "en": "The spirits sing. A great power shall rule over all creation: its life, its soul, and even its remains.",
+      "source": "Manual translation of JP flavor text"
+    },
+    "1111": {
+      "en": "",
+      "source": "empty in JP original"
+    },
+    "1112": {
+      "en": "",
+      "source": "empty in JP original"
+    },
+    "1113": {
+      "en": "",
+      "source": "empty in JP original"
+    },
+    "1114": {
+      "en": "",
+      "source": "empty in JP original"
+    }
+  },
+  "script": {
+    "0X8CD60": {
+      "en": "$fit$g(1,R,1)$g(2,R,1)BG check test.$c",
+      "source": "Manual translation of JP text"
+    },
+    "0X8CD90": {
+      "en": "$fit$g(1,c,1)Character check test.$c",
+      "source": "Manual translation of JP text"
+    },
+    "0X8D654": {
+      "en": "$a(1,34)$g(1,L,1)$fib$i$g(1,c,25)$o(1)$t1All is as the Pharaoh wills it...$nThe battles ahead will be$nlong and hard.$nAre you prepared for them?$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8D6F0": {
+      "en": "$a(1,34)$g(1,L,1)$fib$i$g(1,c,25)$o(1)$t1Only a handful of humans hold$nthe Pharaoh's soul... Finding it and$nsetting it free is my work as well...$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8DA14": {
+      "en": "$a(1,34)$g(1,L,1)$d(2)$fib$i$g(1,c,25)$o(1)$t1......... I am disappointed.$nYou surely carry a Pharaoh's power$ndifferent from Yugi's within you.$nAnd yet......... $c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8DCDC": {
+      "en": "$a(1,34)$g(1,L,1)$d(2)$fib$i$g(1,c,25)$o(1)$t1You have fine power.$nPerhaps you could become one of the many$npieces I need to grant my wish.$nYes... perhaps.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8DD84": {
+      "en": "$a(1,34)$g(1,L,1)$fib$i$y(0,41)$g(1,c,25)$o(1)$t1Will you face my trial once more?$nAs the Pharaohs fought long ago...$nlong and harsh...$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8DED4": {
+      "en": "$a(1,34)$g(1,L,1)$fib$i$y(0,41)$g(1,c,25)$o(1)$t1I am Isis, of the clan that guards$nthe Millennium Items... one of the Ishtars.$nTo change the Pharaoh's fate,$nI cannot afford to lose this battle.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8E0D0": {
+      "en": "$a(1,33)$g(1,L,1)$fib$i$g(1,c,25)$o(1)$t1The rabble here are content just to$ncollect rare cards... Rare cards are$nthe Pharaoh's servants. Such treasures$nare wasted on the likes of them.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8E180": {
+      "en": "$a(1,33)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1........ Where did you build such$na strong spirit? A trial surpassing$nthe anguish of the tomb-keepers$nhas come upon you, has it?$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8E908": {
+      "en": "$a(1,28)$g(1,L,1)$fib$i$g(1,c,25)$o(1)$t1If we dueled in a Shadow Game,$nyour life would be so fleeting...$w$w$w$w$nWell, I'll spare you today.$nYou're not that worthy an opponent.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8EBBC": {
+      "en": "$a(1,28)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1I don't have time to waste$non an opponent like you.$w$w$w$w$nLet's get the next duel started.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8EC58": {
+      "en": "$a(1,28)$d(2)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1They say match duels were used long ago$nwhen the Pharaoh fought in Shadow Games.$n$w$w$w$w$nAll to make the opponent suffer longer.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X8ED1C": {
+      "en": "$a(1,28)$d(2)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1Heh... how trifling.$nThe moment you thought you could beat me,$nyour judgment was already wrong.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X8EE78": {
+      "en": "$a(1,28)$d(2)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1You were tougher than I expected.$w$w$w$w$nWe may meet again.$nNext time I will finish you$nproperly...$w$w$w$w I look forward to it.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X8F0C8": {
+      "en": "$a(1,28)$g(1,L,1)$fib$i$y(0,39)$g(1,c,25)$o(1)$t1I don't have time to duel you$nagain and again!!!!$w$w$w$w$w$w$nOh, fine...$nI'll defeat you with all my strength.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8F270": {
+      "en": "$a(1,28)$g(1,L,1)$fib$i$y(0,39)$g(1,c,25)$o(1)$t1I felt we had met somewhere before...$n$w$w$w$w Must be my imagination.$nI am Marik Ishtar.$nHeir to the tomb-keeper clan...$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8F334": {
+      "en": "$a(1,27)$g(1,L,1)$fib$i$g(1,c,25)$o(1)$t1This is the final battle. Long ago,$nthe Pharaoh used this card and staked all$non this fight... and then...$w$w$w$w$w$w$nThat is still too soon for you...$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8F3EC": {
+      "en": "$a(1,27)$g(1,L,1)$fib$i$g(1,c,25)$o(1)$t1By the Pharaoh's will, I must remove$nthose who would stand in the way of$nthis tournament's participants.$nPlease do not think ill of me.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8F520": {
+      "en": "$a(1,27)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1I am already prepared.$nWhatever cards you add from your Side Deck,$nit will make no difference.$nAll is as the Pharaoh wills...$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8F5C4": {
+      "en": "$a(1,27)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1My deck moves at the Pharaoh's will.$nThus it is the ultimate, ever-changing deck...$nIf you can defeat me, you may hold$npower even beyond the Pharaoh's.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8F7EC": {
+      "en": "$a(1,27)$d(2)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1That I... could lose...$w$w$w$w$nWas it the Pharaoh's will that I lose...$nCould it be...$w$w$w$w If...$w$w$w$w$nThen it cannot be helped.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X8F974": {
+      "en": "$a(1,27)$d(2)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1One cannot defy fate.$nThe servants of the Pharaoh can only$nobey his will.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X8FA00": {
+      "en": "$a(1,27)$d(2)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1Mmm...$w$w$w$w Your power carries$nthe strength and wisdom that reach$nthe Pharaoh... It seems mightier$nthan I expected.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X8FB48": {
+      "en": "$a(1,27)$g(1,L,1)$fib$i$y(0,42)$g(1,c,25)$o(1)$t1To defy the Pharaoh's fate$nis to defy your own...$w$w$w$w$nThis duel's outcome was decided$nlong ago. $w$w$w$w I am the winner.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X8FC1C": {
+      "en": "$a(1,27)$g(1,L,1)$fib$i$y(0,42)$g(1,c,25)$o(1)$t1It was fate that you came to this land.$nAnd fate that you would fight me...$nAll of it is the Pharaoh's will.$nI am Shadi.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X909E4": {
+      "en": "$a(1,25)$a(2,26)$g(1,L,1)$g(2,R,1)$fib$t1Kukukuku.......$w$w$w$w$w$i$y(0,38)$o(1)$t1We are!$w$w$w$w$w$n$o(2)$t2$g(2,r,30)The Mask of Light!$w$w$w$w$g(1,l,30)$o(4)$t1The Mask of Darkness!!$w$w$w$w$n$o(6)$t3We are two in one...$w$w$w$w$w$o(2)$t2We will be taking$nyour rare cards!$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X90E8C": {
+      "en": "$a(1,18)$a(2,24)$g(2,L,1)$g(1,R,1)$d(2)$fit$i$g(1,c,25)$s$o(1)$t1A draw... You have been polishing$nyour technique quite well.$nIf you are this strong...$c$t0$p$n$u$y(4,36)$t2$o(1)$t2$w$w$w$w$w$w$wYou're just a vessel! If you weren't here,$nI could have finished this properly.$nDamn! Letting a tribute slip away like that$nmakes me furious.......$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X92248": {
+      "en": "$a(1,22)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1This is the last time my Harpies$ntake the stage! Do your best!!$nTake care of this one for me.$nI'm counting on you!!$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X92438": {
+      "en": "$a(1,22)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$s$t1So weak!! Did you really think$nyou could beat me with a deck like that?$nTry a little harder next time.$nNot that it will change my victory.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X924F0": {
+      "en": "$a(1,22)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1Gah!! Why?!$nHow could my Harpie deck lose?$nHmph, remember this. Next time I will$nwin with absolute grace!!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9264C": {
+      "en": "$a(1,22)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$s$t1Yay!! I win.$nMy new deck is even stronger$nthan it was before, so a run-of-the-mill$nduelist doesn't stand a chance.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X92CE4": {
+      "en": "$a(1,21)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$s$t1Hahahahaha!! A draw.$nWell, if you fought this hard and still$ndrew, then I'm satisfied. Let's have$nanother go at it sometime.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X93054": {
+      "en": "$a(1,21)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1$t1Kuh....... A man of the sea won't$nlet a little thing like this stop him.$nNext time I'll win for sure.$nI've got a big dream, I do.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X931BC": {
+      "en": "$a(1,21)$g(1,L,1)$fib$i$y(0,37)$g(1,c,25)$o(1)$t1A man of the sea always accepts$na challenge!!$nSo give me everything,$nall 100 percent, and come at me!$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9353C": {
+      "en": "$a(1,20)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1In our last duel I saw every$ncard you own.$nI see...$nThen I...$w$w$w$w Ready!$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X935EC": {
+      "en": "$a(1,20)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1Whatever you add from your Side Deck,$nit is useless before me.$nI can see everything$ninside your deck.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X93AC4": {
+      "en": "$a(1,20)$g(1,L,1)$fib$i$y(0,37)$g(1,c,25)$o(1)$t1I knew it.$nI knew you would come and ask$nme to duel again. And one more thing:$nI knew that I would defeat you.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X943E4": {
+      "en": "$a(1,19)$g(1,L,1)$fib$i$y(0,37)$g(1,c,25)$o(1)$t1Another match?$nYou're really raring to go...$nInteresting! I'll take you on.$nAll-out dinosaur army attack!!$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X947D0": {
+      "en": "$a(1,17)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1D... Damn you!!$nYou're weaker than me!!$nJust hurry up and let me$nbeat you!!$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X94870": {
+      "en": "$a(1,17)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1I've powered up even more,$nso I won't lose again!!$nI'll show you how terrifying$nan insect deck can be!!$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X949D0": {
+      "en": "$a(1,17)$d(2)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$s$t1You're weak, aren't you?$nAsking me to duel was a mistake.$nNext time, think it through$nbefore you challenge me.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X94A78": {
+      "en": "$a(1,17)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1M... My... My insects!$nWhy did you have to beat them?!$nMy insect deck is invincible!$nWhy...$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X94BF0": {
+      "en": "$a(1,17)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$s$t1Hee hee hee hee...$nI told you, didn't I? The insect deck$nhas powered up.$nI won't lose so easily now.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X94C9C": {
+      "en": "$a(1,17)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1Damn you!! My insect deck$nlosing... My strongest...$nI can't believe it!!!!!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X94E78": {
+      "en": "$a(1,17)$g(1,L,1)$fib$i$y(0,37)$g(1,c,25)$o(1)$t1Hee hee hee hee!!$nTo think prey was hiding here too.$nYou'll become food for Weevil's$ninsect deck!!$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X958A0": {
+      "en": "$a(1,13)$g(1,L,1)$fib$i$g(1,c,25)$o(1)$t1$sWell now, can you beat me?$nWith my Exodia deck...$nThe perfect chance to defeat you$nhas finally arrived.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X95B5C": {
+      "en": "$a(1,13)$g(1,L,1)$fib$i$g(1,c,25)$o(1)$t1Let me warn you now.$nYou have no chance of winning!$nAfter all, my deck contains$nExodia itself.$c$fot.",
+      "source": "Manual translation of JP text"
+    },
+    "0X95CA8": {
+      "en": "$a(1,13)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$s$t1Several of our comrades are$ncompeting in this city.$nAnd we will take every rare card$nfrom them!!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X95D4C": {
+      "en": "$a(1,13)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1The Exodia in my deck...$nis falling apart...$w$w$w$w Why...$w$w$w$w$nMy strongest deck...$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X963A0": {
+      "en": "$a(1,12)$g(1,L,1)$fib$i$g(1,c,25)$o(1)$t1$sCan you really defeat$nmy Dark Magician?$nWithout ruthlessness toward monsters,$nyou cannot win! Hehehe...$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X96664": {
+      "en": "$a(1,12)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1$sHehehe... Hya, what a thrill!!$nThis show was perfect.$nNext time, duel a little more and$nentertain me further.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9688C": {
+      "en": "$a(1,12)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1$sHyahahahaha!$nRemember the name of Pandora,$nthe magician who commands$nthe Dark Magician. Keep it in mind.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X96FBC": {
+      "en": "$a(1,11)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1Ta-da!! I win!!$nWell, you still have a way to go.$nYou've got talent, so keep at it$nand duel some more!!$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X97070": {
+      "en": "$a(1,11)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1Gegegeh! Don't you know$nhow to go easy on a guy?! Give me$nsome credit here (or is that wrong?)...$nAnyway, there's a right way to do things!!$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X977B8": {
+      "en": "$a(1,10)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1D.D.M. too, but the first deck$nI built seems like it was actually$nthe strongest one.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X979A4": {
+      "en": "$a(1,10)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1Guah... I... lost.$nHow about a D.D.M. match next time?$nI definitely won't lose at that!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X97CFC": {
+      "en": "$a(1,10)$g(1,L,1)$fib$i$y(0,36)$g(1,c,25)$o(1)$t1If you think I don't play this game$nand will go easy on you, you're wrong.$nI did a lot of research$nwhen I developed D.D.M.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X97F10": {
+      "en": "$a(1,9)$g(1,L,1)$fib$i$g(1,c,25)$o(1)$t1Right, I'm going to give it my all!$nSorry, but I'll be taking this win.$nIf you let your guard down,$nyou'll trip over your own feet.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X98178": {
+      "en": "$a(1,9)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1A draw in a match duel is not$nsomething you achieve so easily.$nPerhaps you have some special power...$nOr is it my imagination?$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9839C": {
+      "en": "$a(1,9)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1A draw.......$nBut you are quite strong.$nPerhaps you have what it takes$nto fight Yugi as an equal.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X98448": {
+      "en": "$a(1,9)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1Hooray! I win!$nYou still need to duel$nall kinds of people.$nPolish your technique.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X98654": {
+      "en": "$a(1,9)$g(1,L,1)$fib$i$y(0,36)$g(1,c,25)$o(1)$t1I'll be your opponent!$nI may be weaker than Yugi, but I think$nI have enough technique to beat you...$nShall we?$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9898C": {
+      "en": "$a(1,8)$g(1,L,1)$fit$i$g(1,c,25)$o(1)$t1Oh! My gah!!!$nI never imagined you would push$nme this far.$nI'll win the next one and settle this.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X99FC4": {
+      "en": "$a(1,2)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$t1$s$t1Yeah$w$w Hoo!!$w$w$w$w I win!!$w$w$nI'm getting stronger too,$nbut I'm still no match for Yugi.$w$w$nCall me anytime!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9A2C0": {
+      "en": "$a(1,2)$g(1,L,1)$fib$i$y(0,36)$g(1,c,25)$o(1)$t1Haven't seen you before... You!$nI'm Joey Wheeler$w$w! Nice to meet ya.$nYou're weak, aren't you!!$w$w$w$nYou'll lose to me in 11 turns!!$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9B198": {
+      "en": "$b(14)$a(1,22)$g(1,L,1)$fib$i$g(1,c,30)$t0[Mai Valentine]$n       Owns \"Harpie Lady SB\"$nAmong the few female entrants, she has$ntop-level skill. A rapidly rising duelist.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9B240": {
+      "en": "$b(14)$a(1,21)$g(1,L,1)$fib$i$g(1,c,30)$t0[Mako Tsunami]$n    Owns \"Legendary Fisherman\"$nA passionate man who stakes all on the sea.$nHis WATER monster deck is his life.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9B2DC": {
+      "en": "$b(14)$a(1,20)$g(1,L,1)$fib$i$g(1,c,30)$t0[Espa Roba]$nOwns \"Jinzo\"$nA psychic duelist able to see through$nhis opponent's hand with his powers.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9B408": {
+      "en": "$b(14)$a(1,24)$g(1,L,1)$fib$i$g(1,c,30)$t0[Ryo Bakura]$n      Owns \"Dark Necrofear\"$nThough he has dueling experience, he has$nnever once entered a tournament.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9B4AC": {
+      "en": "$b(14)$a(1,17)$g(1,L,1)$fib$i$g(1,c,30)$t0[Weevil Underwood]$n            Owns \"Insect Queen\"$nBuilds decks with Insect-Type monsters.$nHe has won many tournaments in the past.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9B5E8": {
+      "en": "$b(14)$a(1,13)$g(1,L,1)$fib$i$g(1,c,30)$t0[Rare Hunter]$n                  Ghouls member$nHe uses an Exodia deck, so special$ncaution is required. Take note.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9B694": {
+      "en": "$b(14)$a(1,12)$g(1,L,1)$fib$i$g(1,c,30)$t0[Pandora]$n                  Ghouls member$nUses a deck centered on$nthe Dark Magician. Exercise caution.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9B7C0": {
+      "en": "$b(14)$a(1,10)$g(1,L,1)$fib$i$g(1,c,30)$t0[Duke Devlin]$n $nInventor of the dice game \"D.D.M.\"$nHe is also well versed in the DM series.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9B8D0": {
+      "en": "$b(14)$a(1,8)$g(1,L,1)$fib$i$g(1,c,30)$t0[Maximillion Pegasus]$n          Owns \"Toon World\"$nThe creator of this game, a being who$nknows all. A special entrant this time.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9B98C": {
+      "en": "$b(14)$a(1,7)$g(1,L,1)$fib$i$g(1,c,30)$t0[Bandit Keith]$n      Owns \"Barrel Dragon\"$nFormer U.S. champion. After Duelist$nKingdom, his whereabouts were unknown.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9BA3C": {
+      "en": "$b(14)$a(1,2)$g(1,L,1)$fib$i$g(1,c,30)$t0[Joey Wheeler]$n               Owns \"Red-Eyes Black Dragon\"$nA duelist who is always the dark horse$nin every tournament he enters.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9BAE0": {
+      "en": "$b(14)$a(1,1)$g(1,L,1)$fib$i$g(1,c,30)$t0[Seto Kaiba]$n               Owns \"Blue-Eyes White Dragon\"$nPresident of KaibaCorp. The strongest$nduelist, with outstanding strategy and skill.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9BB88": {
+      "en": "$b(14)$a(1,0)$g(1,L,1)$fib$i$g(1,c,30)$t0[Yugi Muto]$n         Owns \"Dark Magician\"$nA past Duelist Kingdom champion.$nA man who uses high-level tactics.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9BE80": {
+      "en": "$y(0,49)$b(9)$a(1,35)$g(1,R,1)$fib$i$g(1,c,35)$t1$o(1)$t1Duelists!!$nWelcome!$w$w$w$w To Battle City!!!!$c$p$nThis place, Battle City, is$na duel city designed for fighting$nmany duelists.$c$p$nBattle City is divided into sections,$nso please move between areas and$nlook for opponents.$c$p$nNow, I will give each of you$na set of 40 cards, so please check them$nlater...$w$w$w$w$w$nNow, choose!$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0X9C050": {
+      "en": "$a(1,0)$g(1,L,1)$fib$i$g(1,c,25)$o(1)$s$t1I never thought I would end up$ndueling you at the KC Cup.$nToday I will fight with everything I have!$nPrepare yourself!!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9C0FC": {
+      "en": "$a(1,0)$g(1,L,1)$fib$i$g(1,c,25)$o(1)$s$t1You have grown strong enough to$nreach the finals of this tournament.$nIf you start appearing in other tournaments,$nI will have more rivals to deal with.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9C1B4": {
+      "en": "$a(1,0)$g(1,L,1)$fib$i$g(1,c,25)$o(1)$s$t1Hey! Doing well?$nToday's tournament isn't the kind$nthat makes you tense...$nSo let's just fight with a light heart!!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9C820": {
+      "en": "$a(1,0)$g(1,L,1)$d(2)$fit$i$g(1,c,25)$o(1)$s$t1That was a good fight!$nThis time I was just a little bit$nahead. Before we duel again,$nstrengthen your deck for me.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9E0B8": {
+      "en": "$a(1,14)$g(1,L,1)$fibThe minimum deck size is 40 cards.$nIn other words, the chance of drawing$nthe card you want first is 1 in 40.$c$p$nBut if your deck grows to 50 cards,$nthe chance drops$nto 1 in 50.$c$p$nSo filling your deck with strong cards$ndoes not always make it stronger...$nWhat matters is adjusting the number$nof cards to fit your tactics at the time.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9E330": {
+      "en": "$a(1,14)$g(1,L,1)$fibYou know the card detail display$nhas been updated, right? For cards whose$neffects are too long for one screen,$npress Down to read the rest.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9E4DC": {
+      "en": "$a(1,14)$g(1,L,1)$fibDid you know that this time, along with$nthe Graveyard, a Removed Zone has been$nadded? Removed cards are$nplaced in this area.$c$p$nIt is a new zone added in DM6,$nso if you did not know, check it$nduring your next duel!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9E668": {
+      "en": "$a(1,14)$g(1,L,1)$fibMany duelists are scattered around$nthis city, looking for opponents.$nIf you find a duelist you think is$nworth it, go ahead and challenge them.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9EA58": {
+      "en": "$a(1,14)$g(1,L,1)$fib$r4Battle City$r2 seems to have many$nduelists competing.$w$w$w$w$nYou're quite strong too, aren't you?$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9F04C": {
+      "en": "$a(1,14)$g(1,L,1)$fibMy mom says I have to finish$nhomework before I can duel!$w$w$w$w$nHey, have you finished your homework?$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9F1B4": {
+      "en": "$a(1,14)$g(1,L,1)$fibI know people from all over the world$nwork in this city, but$nlately I see more Middle Eastern people.$w$w$w$w$nOr is it my imagination...$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9F384": {
+      "en": "$a(1,14)$g(1,L,1)$fibOh!!$w$w$w You are that...$w$w$w$w$nthing... a duelist.$w$w$w$w$w$nDuelists are heroes who protect the world$w$w$w$w$w$w$w$w$nRight... no. Excuse me!!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9F43C": {
+      "en": "$a(1,14)$g(1,L,1)$fibI don't know how strong a duelist$nyou are, but I'm rooting for you.$nMy son duels too!$w$w$w$w$nSo I'll cheer for you too.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9F7E8": {
+      "en": "$a(1,14)$g(1,L,1)$fibWow!! A real duelist!$w$w$w$w$nShow me, show me!! Show me a summon!!$w$w$w$nCome on, show me a summon!!$w$w$w$nCome on, show me, show me!!!$c$p$n$r7Reverse card, activate!!$nThe power of cards opens my future!$n$r2Cool!! Awesome!!$nDo it, do it!!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0X9FB9C": {
+      "en": "$a(1,14)$g(1,L,1)$fibMy cute Satoshi is taking part.$n$w$w$w$w$nSomeone like you is going to lose, you know.$w$w$w$w$nOh$w$w$w ho ho ho ho!!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA062C": {
+      "en": "$a(1,14)$g(1,L,1)$fib$r7Pi$w$w$w pipipi$w$w pi$w$w...$n.................$nThis week's test answers........$n.................$r2$c$p$nNo good...$w$w$w$w$nThe boy the other day went pipipipi$nand understood everything, too...$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA1054": {
+      "en": "$a(1,14)$g(1,L,1)$fibHey, hey, are you a duelist$nlike that person from before?$w$w$w$w$w$nWas that person cooler?$c$p$nHe has Middle Eastern features and$nis super handsome.$w$w$w$w$nHe looks really good on a bike, too.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA165C": {
+      "en": "$a(1,14)$g(1,L,1)$fibYesterday I saw an amazing guy here!$nHe had something like spells written$non his face!$w$w$w$w$nI wonder who he was...$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA1BC4": {
+      "en": "$b(1)$a(1,27)$a(2,33)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1To defy the Pharaoh's fate$nis to defy your own...$w$w$w$w$nThe outcome of this duel$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2You should go somewhere else.$c$p$n$g(1,L,50)$w$w$w$w$w$w$wMy name is Reshid...$nBy Lord Marik's command, I will take$nthe rare cards you hold.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA1D24": {
+      "en": "$b(1)$a(1,27)$a(2,25)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1To defy the Pharaoh's fate$nis to defy your own...$w$w$w$w$nThe outcome of this duel$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2Out of my way!!$c$p$n$g(1,L,50)$w$w$w$w$w$w$wWe are the Ghouls' assassins...$n$a(1,26)$g(1,R,0)$g(2,l,25)$g(1,r,30)$t1$o(2)The Mask of Light!!$w$w$w$w$w$w$n$t2$o(4)The Mask of Darkness!!!!$w$w$w$w$w$w$n$t1$o(2)We will take your cards!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA1EDC": {
+      "en": "$b(1)$a(1,27)$a(2,23)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1To defy the Pharaoh's fate$nis to defy your own...$w$w$w$w$nThe outcome of this duel$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2........!!!!$c$p$n$g(1,L,50)$w$w$w$w$w$w$w........$n.................$n.....Rare card.....$n...Give it to me.........$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA2068": {
+      "en": "$b(1)$a(1,27)$a(2,13)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1To defy the Pharaoh's fate$nis to defy your own...$w$w$w$w$nThe outcome of this duel$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2This is my territory...$c$p$n$g(1,L,50)$w$w$w$w$w$w$wI am a messenger of the Ghouls...$nA Rare Hunter with the ultimate deck.$nI will take your cards.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA21C4": {
+      "en": "$b(1)$a(1,27)$a(2,12)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1To defy the Pharaoh's fate$nis to defy your own...$w$w$w$w$nThe outcome of this duel$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2Excuse me... I will be your opponent.$c$p$n$g(1,L,50)$w$w$w$w$w$w$wI am one of the Ghouls...$nPandora, the magician who wields$nthe Dark Magician. If I lose this duel,$nI will take your cards.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA640C": {
+      "en": "$b(1)$a(1,10)$a(2,33)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1If you think I don't play this game$nand will go easy on you, you're wrong.$nWhen I developed D.D.M.$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2You should go somewhere else.$c$p$n$g(1,L,50)$w$w$w$w$w$w$wMy name is Reshid...$nBy Lord Marik's command, I will take$nthe rare cards you hold.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA6570": {
+      "en": "$b(1)$a(1,10)$a(2,25)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1If you think I don't play this game$nand will go easy on you, you're wrong.$nWhen I developed D.D.M.$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2Out of my way!!$c$p$n$g(1,L,50)$w$w$w$w$w$w$wWe are the Ghouls' assassins...$n$a(1,26)$g(1,R,0)$g(2,l,25)$g(1,r,30)$t1$o(2)The Mask of Light!!$w$w$w$w$w$w$n$t2$o(4)The Mask of Darkness!!!!$w$w$w$w$w$w$n$t1$o(2)We will take your cards!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA672C": {
+      "en": "$b(1)$a(1,10)$a(2,23)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1If you think I don't play this game$nand will go easy on you, you're wrong.$nWhen I developed D.D.M.$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2........!!!!$c$p$n$g(1,L,50)$w$w$w$w$w$w$w........$n.................$n.....Rare card.....$n...Give it to me.........$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA68BC": {
+      "en": "$b(1)$a(1,10)$a(2,13)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1If you think I don't play this game$nand will go easy on you, you're wrong.$nWhen I developed D.D.M.$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2This is my territory...$c$p$n$g(1,L,50)$w$w$w$w$w$w$wI am a messenger of the Ghouls...$nA Rare Hunter with the ultimate deck.$nI will take your cards.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA6A1C": {
+      "en": "$b(1)$a(1,10)$a(2,12)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1If you think I don't play this game$nand will go easy on you, you're wrong.$nWhen I developed D.D.M.$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2Excuse me... I will be your opponent.$c$p$n$g(1,L,50)$w$w$w$w$w$w$wI am one of the Ghouls...$nPandora, the magician who wields$nthe Dark Magician. If I lose this duel,$nI will take your cards.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA6BA0": {
+      "en": "$b(1)$a(1,9)$a(2,33)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1I'll be your opponent!$nI may be weaker than Yugi, but I$nhave enough skill to beat$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2You should go somewhere else.$c$p$n$g(1,L,50)$w$w$w$w$w$w$wMy name is Reshid...$nBy Lord Marik's command, I will take$nthe rare cards you hold.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA6CE8": {
+      "en": "$b(1)$a(1,9)$a(2,25)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1I'll be your opponent!$nI may be weaker than Yugi, but I$nhave enough skill to beat$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2Out of my way!!$c$p$n$g(1,L,50)$w$w$w$w$w$w$wWe are the Ghouls' assassins...$n$a(1,26)$g(1,R,0)$g(2,l,25)$g(1,r,30)$t1$o(2)The Mask of Light!!$w$w$w$w$w$w$n$t2$o(4)The Mask of Darkness!!!!$w$w$w$w$w$w$n$t1$o(2)We will take your cards!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA6E88": {
+      "en": "$b(1)$a(1,9)$a(2,23)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1I'll be your opponent!$nI may be weaker than Yugi, but I$nhave enough skill to beat$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2........!!!!$c$p$n$g(1,L,50)$w$w$w$w$w$w$w........$n.................$n.....Rare card.....$n...Give it to me.........$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA6FFC": {
+      "en": "$b(1)$a(1,9)$a(2,13)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1I'll be your opponent!$nI may be weaker than Yugi, but I$nhave enough skill to beat$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2This is my territory...$c$p$n$g(1,L,50)$w$w$w$w$w$w$wI am a messenger of the Ghouls...$nA Rare Hunter with the ultimate deck.$nI will take your cards.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA7140": {
+      "en": "$b(1)$a(1,9)$a(2,12)$g(2,L,1)$g(1,R,1)$fib$i$g(1,c,25)$o(1)$t1I'll be your opponent!$nI may be weaker than Yugi, but I$nhave enough skill to beat$o(0)$w$w$w$w$w$w$p$n$g(2,c,25)$o(1)$t2Excuse me... I will be your opponent.$c$p$n$g(1,L,50)$w$w$w$w$w$w$wI am one of the Ghouls...$nPandora, the magician who wields$nthe Dark Magician. If I lose this duel,$nI will take your cards.$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XA9984": {
+      "en": "$b(9)$a(1,35)$g(1,R,1)$fit$i$g(1,c,35)$t1$o(1)$t1OK! Did you memorize my face?$nIf you have never seen me, then you$nhave never dueled me!!$nRun all over Battle City!!$c$p$nThe results will be announced next Monday,$nso until then, find your targets$nand earn one win!!$nNow, everyone, do your best!!$c$fob",
+      "source": "Manual translation of JP text"
+    },
+    "0XAB7A8": {
+      "en": "$a(1,35)$g(1,R,1)$fib$i$g(1,c,35)$t1$o(1)$t1Congratulations! You cleared round one.$nThe semifinals will be held tomorrow,$nso please do not forget to participate.$nFailure to appear will mean forfeit.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XADFF8": {
+      "en": "$b(10)$a(1,35)$g(1,R,1)$fib$i$g(1,c,35)$t1$o(1)$t1The rules of this exam $r3forbid all Spell$nand Trap Cards$r2.$c$p$nYour current deck contains such$ncards, so remove them before$nentering.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XAE0C8": {
+      "en": "$b(10)$y(0,52)$a(1,35)$g(1,R,1)$fib$i$g(1,c,35)$t1$o(1)$t1OK! You passed!!$w$w$w$w$nYou have now passed$nevery exam,$nso I will lift your limiter.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XAE254": {
+      "en": "$b(10)$a(1,35)$g(1,R,1)$fib$i$g(1,c,35)$t1$o(1)$t1The rules of this exam $r3forbid all Spell$nCards$r2.$c$p$nYour current deck contains such Spell$nCards, so remove$nthose cards before$nentering.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XAE4CC": {
+      "en": "$b(10)$a(1,35)$g(1,R,1)$fib$i$g(1,c,35)$t1$o(1)$t1The rules of this exam $r3forbid all Effect$nMonsters$r2.$c$p$nYour current deck contains such Effect$nMonsters, so remove$nthose cards before$nentering.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XAEA0C": {
+      "en": "$b(10)$a(1,35)$g(1,R,1)$fib$i$g(1,c,35)$t1$o(1)$t1To enter this exam, all monsters$nin your deck must have$n$r3less than 1000 ATK$r2, according to the rules.$n$c$p$nYour current deck contains other$nmonsters, so remove$nthose cards before$nentering.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XAEF94": {
+      "en": "$b(10)$a(1,35)$g(1,R,1)$fib$i$g(1,c,35)$t1$o(1)$t1To enter this exam, all monsters$nin your deck must be$n$r3Insect-Type$r2, according to the rules.$c$p$nYour current deck contains other$nmonsters, so remove$nthose cards before$nentering.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XAF24C": {
+      "en": "$b(10)$a(1,35)$g(1,R,1)$fib$i$g(1,c,35)$t1$o(1)$t1To enter this exam, all monsters$nin your deck must be$nDragon-Type, according to the rules.$n$c$p$nYour current deck contains other$nmonsters, so remove$nthose cards before$nentering.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XAF4F0": {
+      "en": "$b(10)$a(1,35)$g(1,R,1)$fib$i$g(1,c,35)$t1$o(1)$t1To enter this exam, all monsters$nin your deck must be,$n$r3Spellcaster-Type$r2, according to the rules.$n$c$p$nYour current deck contains other$nmonsters, so remove$nthose cards before$nentering.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XAF788": {
+      "en": "$b(10)$a(1,35)$g(1,R,1)$fib$i$g(1,c,35)$t1$o(1)$t1To enter this exam, all monsters$nin your deck must be$r3all$nWarrior or Beast-Warrior$r2, according to the rules.$n$c$p$nYour current deck contains other$nmonsters, so remove$nthose cards before$nentering.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XAF8A8": {
+      "en": "$b(10)$y(0,52)$a(1,35)$g(1,R,1)$fib$i$g(1,c,35)$t1$o(1)$t1Sorry, but you failed.$w$w$w$w$nStrengthen your deck and try again.$n$w$w$w$w When you clear all exams,$nyour limiter will be lifted.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XAFC00": {
+      "en": "$fit$a(1,15)$g(1,c,1)The data isn't ready yet... snif...$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XAFC40": {
+      "en": "$fit$a(1,14)$g(1,c,1)It seems to be a sample.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XAFC70": {
+      "en": "$fit$a(1,14)$g(1,c,1)Sorry, it's still a sample.$c$fot",
+      "source": "Manual translation of JP text"
+    },
+    "0XAFCAC": {
+      "en": "$fib$g(1,c,1)$g(2,L,1)$r7Hi, I'm $r2Yugi Muto$r7.\nDo you play $r6Duel Monsters$r7 too?\nIf you win a $r5duel$r7, $c$p\nyou get a card.$c$p\nChibi Maruko-chan is starting~\nChibi Maruko-chan is starting~\nChibi Maruko-chan is starting~\nChibi Maruko-chan is starting~\n$c$p\nChibi Maruko-chan is starting~\nChibi Maruko-chan is starting~\nChibi Maruko-chan is starting~\nChibi Maruko-chan is starting~\n",
+      "source": "Manual translation of JP text"
+    }
+  }
+}

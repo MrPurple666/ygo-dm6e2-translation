@@ -13,6 +13,7 @@ from ygo import (
     encode,
     write_ips,
 )
+from ygo.build import EXPECTED_JP_SHA, apply_table, build_table, verify
 from ygo.tables import (
     OFFSETS,
     extract_jp_descriptions,
@@ -161,6 +162,29 @@ class TestScriptTables(unittest.TestCase):
         assert next(x for x in us if x.offset == 0xB11B4).body.startswith("My tactics are enough")
         for internal in (0x91019, 0x91538, 0x97575, 0xAA617, 0xADB08):
             assert internal not in m
+
+
+class TestBuild(unittest.TestCase):
+    def test_end_to_end(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            out = Path(tmpdir) / "dm6-en.gba"
+            ips = Path(tmpdir) / "dm6-en.ips"
+            jp, us = Rom(JP), Rom(US)
+            table = build_table(jp, us)
+            patched = apply_table(jp, table, out, ips)
+            report = verify(jp, us, patched, table)
+            assert jp.sha256() == EXPECTED_JP_SHA
+            assert patched.size == 16777216
+            assert report["jp_characters_remaining"] == 0
+            assert report["pointer_updates_valid"] is True
+            assert report["pointer_updates"] > 0
+            assert report["size_ok"] and report["cards_ok"]
+            assert ips.read_bytes()[:5] == b"PATCH"
+            assert len(extract_names(patched, OFFSETS["JP_NAME"], 1115)) == 1115
+            assert all(
+                not contains_japanese(name)
+                for name in extract_names(patched, OFFSETS["JP_NAME"], 1115)
+            )
 
 
 if __name__ == "__main__":

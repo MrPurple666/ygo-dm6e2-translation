@@ -180,6 +180,13 @@ class TestBuild(unittest.TestCase):
             assert report["binary_false_positives"] > 0
             assert b"There are no cards." in patched.data
             assert b"Warrior" in patched.data
+            assert (
+                patched.read_slot(0x176790, 0x20).split(b"\x00")[0] == b"Main Screen"
+            )
+            corrupted = Rom(out)
+            corrupted.write(OFFSETS["JP_NAME"], encode("日本語") + b"\x00")
+            corrupted.write(OFFSETS["JP_DESC"], encode("日本語") + b"\x00")
+            assert verify(jp, us, corrupted, table)["jp_characters_remaining"] == 2
             assert report["pointer_updates_valid"] is True
             assert report["pointer_updates"] > 0
             assert report["size_ok"] and report["cards_ok"]

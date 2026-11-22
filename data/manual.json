@@ -834,6 +834,10 @@
     }
   },
   "ui": {
+    "0X176790": {
+      "en": "Main Screen",
+      "source": "Manual translation; US ROM literal at 0x23F3E0"
+    },
     "0XAFE44": {
       "en": "Piposaru",
       "source": "Manual translation of JP UI text"

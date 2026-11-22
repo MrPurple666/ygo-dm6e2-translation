@@ -35,6 +35,8 @@ IPS_MAX = 0xFFFF
 # Faixa de UI sem prefixo $ na ROM JP e blocos JP/EN correspondentes na US.
 UI_START = 0xAFE44
 UI_END = 0xB6ED0
+# Texto real fora da faixa principal, comprovado por ponteiros e pela US.
+UI_EXTRA = (0x176790,)
 US_UI_JP = (0x36B300, 0x36ECD0)
 US_UI_EN = (0x36F0DA, 0x373000)
 # Deslocamentos entre literais JP e EN na mesma função da ROM US.
@@ -136,6 +138,10 @@ def _us_text_at(rom: Rom, offset: int) -> str:
     start = rom.data.rfind(b"\x00", 0, offset) + 1
     end = rom.data.find(b"\x00", start)
     return decode(rom.data[start:end])
+
+
+def _is_ui_offset(offset: int) -> bool:
+    return UI_START <= offset <= UI_END or offset in UI_EXTRA
 
 
 def _ui_key(text: str) -> str:
@@ -260,7 +266,7 @@ def build_table(jp: Rom, us: Rom) -> TranslationTable:
     ui_ported = ui_manual = 0
     for start, stop, text in _blocks(jp_script):
         is_script = text.startswith("$")
-        is_ui = UI_START <= start <= UI_END and not is_script
+        is_ui = _is_ui_offset(start) and not is_script
         if not contains_japanese(text) or not (is_script or is_ui):
             continue
         manual_entry = manual_script.get(f"{start:#X}") or manual_script.get(f"{start:X}")
@@ -390,17 +396,18 @@ def verify(jp: Rom, us: Rom, patched: Rom, table: TranslationTable) -> dict:
     script = extract_script(patched)
     prefixed = [item for item in script if item.prefix]
     ui = [
-        item
-        for item in script
-        if not item.prefix and UI_START <= item.offset <= UI_END
+        item for item in script if not item.prefix and _is_ui_offset(item.offset)
     ]
     binary = [
-        item
-        for item in script
-        if not item.prefix and not (UI_START <= item.offset <= UI_END)
+        item for item in script if not item.prefix and not _is_ui_offset(item.offset)
     ]
     ui_remaining = sum(contains_japanese(item.body) for item in ui)
-    remaining = sum(contains_japanese(item.body) for item in prefixed) + ui_remaining
+    remaining = (
+        sum(contains_japanese(name) for name in names)
+        + sum(contains_japanese(text) for text in descriptions)
+        + sum(contains_japanese(item.body) for item in prefixed)
+        + ui_remaining
+    )
     false_positives = sum(contains_japanese(item.body) for item in binary)
 
     pointer_valid = True

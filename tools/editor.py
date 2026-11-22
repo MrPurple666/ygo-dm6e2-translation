@@ -71,12 +71,19 @@ def filter_rows(data: dict, section: str, query: str) -> list[tuple[str, str]]:
     return sorted(rows, key=lambda row: _sort_key(row[0]))
 
 
+def validation_for(section: str, original: str, edited: str) -> list[str]:
+    """Valida qualquer seção; falas/UI usam limite informativo alto."""
+    return validate_entry(original, edited, limit=LIMITS.get(section, 10_000))
+
+
 def apply_edit(data: dict, section: str, key: str, text: str) -> dict:
     updated = copy.deepcopy(data)
     if section == "overrides":
         updated[section][key] = text
     else:
-        updated[section][key] = {"en": text, "source": "edited in editor"}
+        entry = dict(updated[section][key])
+        entry["en"] = text
+        updated[section][key] = entry
     return updated
 
 
@@ -199,9 +206,8 @@ class EditorWindow(Gtk.Window):
             self.status.set_text("")
             return []
         original = self._text_of(self.data[self.current_section][self.current_key])
-        limit = LIMITS.get(self.current_section, 0)
-        problems = [] if limit == 0 else validate_entry(
-            original, self._current_text(self.current_section), limit=limit
+        problems = validation_for(
+            self.current_section, original, self._current_text(self.current_section)
         )
         self.status.set_text(" | ".join(problems))
         return problems
@@ -256,7 +262,8 @@ class EditorWindow(Gtk.Window):
             flags=0,
             message_type=Gtk.MessageType.INFO,
             buttons=Gtk.ButtonsType.OK,
-            text=(result.stdout + result.stderr).strip() or "build concluído",
+            text=f"saída {result.returncode}\n"
+            + ((result.stdout + result.stderr).strip() or "build concluído"),
         )
         dialog.run()
         dialog.destroy()

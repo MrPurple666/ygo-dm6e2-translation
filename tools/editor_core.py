@@ -1,11 +1,13 @@
 """Núcleo do editor de traduções: carregar, validar e salvar os JSONs."""
 
 import json
+import os
 import shutil
+import tempfile
 from pathlib import Path
 
 from ygo.text import _MARKUP_RE as TOKEN_RE
-from ygo.text import contains_japanese, cp932_len
+from ygo.text import contains_japanese, cp932_len, fullwidth
 
 
 def load_translations(path: Path) -> dict:
@@ -20,9 +22,17 @@ def save_translations(data: dict, path: Path) -> None:
     path = Path(path)
     if path.exists():
         shutil.copy2(path, path.with_suffix(path.suffix + ".bak"))
-    path.write_text(
-        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    payload = (json.dumps(data, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+    fd, temporary = tempfile.mkstemp(dir=path.parent, prefix=path.name, suffix=".tmp")
+    try:
+        with os.fdopen(fd, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
 
 
 def validate_entry(original: str, edited: str, *, limit: int) -> list[str]:
@@ -37,7 +47,11 @@ def validate_entry(original: str, edited: str, *, limit: int) -> list[str]:
         )
     if contains_japanese(edited):
         problems.append("ainda há texto japonês")
-    size = cp932_len(edited)
+    try:
+        size = cp932_len(fullwidth(edited))
+    except UnicodeEncodeError:
+        problems.append("caractere não representável em cp932")
+        size = 0
     if size > limit:
         problems.append(f"texto tem {size} bytes; limite é {limit}")
     return problems

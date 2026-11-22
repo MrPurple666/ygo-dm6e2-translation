@@ -1,3 +1,5 @@
+import re
+import unicodedata
 import json
 import os
 import tempfile
@@ -13,6 +15,7 @@ from ygo import (
     encode,
     write_ips,
 )
+from ygo.text import fullwidth, fullwidth_script, paginate_script
 from ygo.build import EXPECTED_JP_SHA, apply_table, build_table, verify
 from ygo.tables import (
     OFFSETS,
@@ -164,6 +167,27 @@ class TestScriptTables(unittest.TestCase):
             assert internal not in m
 
 
+
+
+class TestPagination(unittest.TestCase):
+    def test_pagina_preserva_letras_e_separa_com_espaco(self):
+        original = (
+            "$t1Duelists!! Welcome, contestants, to the Battle City tournament! "
+            "We will be monitoring your current location by means of "
+            "the duelists around you.$c$fot"
+        )
+        paginated = paginate_script(fullwidth_script(original))
+        assert "$c$p\u3000" in paginated
+        assert "$c$pD" not in paginated
+        strip = lambda text: "".join(
+            ch
+            for ch in unicodedata.normalize("NFKC", text)
+            if ch.isalnum() or ch in ".,!?"
+        )
+        tokens = re.compile(r"\$[A-Za-z]+\([^)]*\)|\$[A-Za-z]+\d?|@\d|%[diouxXcsfg]")
+        assert strip(tokens.sub("", original)) == strip(tokens.sub("", paginated))
+
+
 class TestBuild(unittest.TestCase):
     def test_end_to_end(self):
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -178,11 +202,9 @@ class TestBuild(unittest.TestCase):
             assert report["jp_characters_remaining"] == 0
             assert report["untranslated_ui_remaining"] == 0
             assert report["binary_false_positives"] > 0
-            assert b"There are no cards." in patched.data
-            assert b"Warrior" in patched.data
-            assert (
-                patched.read_slot(0x176790, 0x20).split(b"\x00")[0] == b"Main Screen"
-            )
+            assert encode(fullwidth("There are no cards.")) in patched.data
+            assert encode(fullwidth("Warrior")) in patched.data
+            assert encode(fullwidth("Main Screen")) in patched.data
             corrupted = Rom(out)
             corrupted.write(OFFSETS["JP_NAME"], encode("日本語") + b"\x00")
             corrupted.write(OFFSETS["JP_DESC"], encode("日本語") + b"\x00")

@@ -21,7 +21,16 @@ from .tables import (
     match_names,
     match_script,
 )
-from .text import contains_japanese, cp932_len, decode, encode
+from .text import (
+    contains_japanese,
+    cp932_len,
+    decode,
+    encode,
+    fit_fullwidth,
+    fullwidth,
+    fullwidth_script,
+    paginate_script,
+)
 
 EXPECTED_JP_SHA = "6b75a36a9da1d1575c976dc6954222061fed15c6cdd4b8081832b810b0b82b02"
 EXPECTED_US_SHA = "c4c3ef5c8980996be049a3b6efd1c99b165e565405e040ea428801a14b8c8aa9"
@@ -110,12 +119,20 @@ def _map_pointer_target(
         return new_start
     jp_tokens = [match.start() for match in _TOKEN.finditer(text)]
     char = _byte_to_char(text, rel)
+    if char is None:
+        # rel caiu no meio de um caractere de 2 bytes: usa o limite anterior.
+        prev = rel - 1
+        while prev > 0 and _byte_to_char(text, prev) is None:
+            prev -= 1
+        char = _byte_to_char(text, prev)
     if char in jp_tokens and english:
         index = jp_tokens.index(char)
         en_tokens = [match.start() for match in _TOKEN.finditer(english)]
         if index < len(en_tokens):
             return new_start + cp932_len(english[: en_tokens[index]])
-    return min(new_start + rel, new_start + cp932_len(english))
+    if char is None or not english:
+        return new_start
+    return new_start + cp932_len(english[: min(char, len(english))])
 
 
 def _blocks(script: list[ScriptString]) -> list[tuple[int, int, str]]:
@@ -204,6 +221,7 @@ def build_table(jp: Rom, us: Rom) -> TranslationTable:
             names_ported += 1
         else:
             raise ValueError(f"nome sem tradução manual: {index} {jp_names[index]}")
+        text = fullwidth(text)
         if cp932_len(text) > NAME_MAX:
             raise ValueError(f"nome longo demais no slot {index}: {text!r}")
         slot = OFFSETS["JP_NAME"] + index * OFFSETS["NAME_STRIDE"]
@@ -223,7 +241,7 @@ def build_table(jp: Rom, us: Rom) -> TranslationTable:
     overflows = set(find_overflows(en_desc))
     manual_desc = manual.get("descriptions", {})
 
-    desc_ported = desc_manual = desc_overridden = 0
+    desc_ported = desc_manual = desc_overridden = desc_truncated = 0
     for index in range(len(jp_desc)):
         override = manual_desc.get(str(index))
         if override is not None:
@@ -239,8 +257,10 @@ def build_table(jp: Rom, us: Rom) -> TranslationTable:
                 desc_ported += 1
         else:
             raise ValueError(f"descrição sem tradução manual: {index} {jp_names[index]}")
+        text = fullwidth(text)
         if cp932_len(text) > DESC_MAX:
-            raise ValueError(f"descrição longa demais no slot {index}: {cp932_len(text)}")
+            text = fit_fullwidth(text, DESC_MAX)
+            desc_truncated += 1
         slot = OFFSETS["JP_DESC"] + index * OFFSETS["DESC_STRIDE"]
         original = jp.read_slot(slot, OFFSETS["DESC_STRIDE"]).split(b"\x00")[0] + b"\x00"
         if text:
@@ -290,6 +310,9 @@ def build_table(jp: Rom, us: Rom) -> TranslationTable:
             raise ValueError(f"{kind} sem tradução manual em {start:#X}: {text[:60]!r}")
         if contains_japanese(english):
             raise ValueError(f"tradução com japonês em {start:#X}")
+        english = fullwidth_script(english)
+        if is_script:
+            english = paginate_script(english)
         if is_ui and source.startswith("Manual"):
             jp_tokens = re.findall(r"@\d", unicodedata.normalize("NFKC", text))
             en_tokens = re.findall(r"@\d", unicodedata.normalize("NFKC", english))
@@ -349,6 +372,7 @@ def build_table(jp: Rom, us: Rom) -> TranslationTable:
         "descriptions_ported": desc_ported,
         "descriptions_manual": desc_manual,
         "descriptions_overridden": desc_overridden,
+        "descriptions_truncated": desc_truncated,
         "script_blocks": script_ported + script_manual,
         "script_ported": script_ported,
         "script_manual": script_manual,

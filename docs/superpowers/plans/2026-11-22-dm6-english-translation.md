@@ -340,3 +340,34 @@ Observar: menu principal, primeiro diálogo com o texto "After the Ghouls depart
 - [ ] **Step 3: Registrar limitações**
 
 Atualizar `translation-report.json` com `visual_check` (observações e telas verificadas). Se a interface gráfica não permitir automação, registrar explicitamente o limite em vez de afirmar verificação automática.
+
+---
+
+### Task 7: Corrigir renderização do texto de diálogo (descoberto na Task 6)
+
+**Files:**
+- Modify: `ygo/build.py`, `ygo/text.py` (conversão de编码 para o renderizador de diálogo)
+- Modify: `tests/test_ygo.py`
+- Modify: `tools/build.py`, `translation-report.json` (registro da verificação visual)
+
+**Contexto observado:** na ROM patched, menu ("NewGame"/"Continue"), HUD de duelo e descrições de carta aparecem em inglês legível, mas as caixas de diálogo da campanha exibem glifos sobrepostos/ilegíveis. Exemplo: fala de Isis em `0xC33740` (`$a(1,34)...$t1I am Isis, of the clan...`) e fala em `0xC353D8` (`$a(1,24)...$t1$sI don't enjoy participating...`). Savestates do mGBA: `dm6-en.ss5` e `/tmp/dm6-fw-test.ss5` (chunk `gbAs` é zlib; ponteiro para `0x08C35435` aparece no estado). Screenshots: `/tmp/mgba-nav-menu.png`, `/tmp/fw-load.png`, `/tmp/fw-test-isis2.png`.
+
+**Interfaces:**
+- Consumes: `build_table`, `apply_table`, `verify`, `Rom`, `encode`, `decode`, `contains_japanese`, todos os dados e artefatos da Task 5.
+- Produces: diálogos com codificação aceita pelo renderizador da ROM JP (testar full-width cp932 `ＴＥＳＴ` e/ou portar a fonte latina da ROM US); `verify()` passa a checar a codificação; `translation-report.json` ganha `visual_check`.
+
+- [ ] **Step 1: Reproduzir e isolar o defeito**
+
+Abrir `dm6-en.gba` no mGBA (`QT_QPA_PLATFORM=xcb mgba-qt -2 dm6-en.gba`), avançar até uma caixa de diálogo e capturar. Confirmar que menu/HUD estão legíveis e a fala não está.
+
+- [ ] **Step 2: Testar codificação full-width**
+
+Em cópia temporária da ROM, substituir o corpo da fala de Isis em `0xC33740` por `ＴＥＳＴ` em cp932, mantendo o prefixo `$...`; recarregar e observar se os glifos ficam legíveis. Registrar o resultado com screenshot.
+
+- [ ] **Step 3: Implementar a correção no pipeline**
+
+Se full-width funcionar, converter o corpo (não os códigos de controle) de todas as strings de script/diálogo para a codificação full-width antes de gravar, realocando conforme necessário. Se não funcionar, portar os tiles/ponteiros da fonte latina da ROM US para a ROM JP, documentando a estratégia.
+
+- [ ] **Step 4: Verificar e registrar**
+
+Rebuildar, abrir no emulador, capturar menu + diálogo + tela de carta legíveis, atualizar `translation-report.json` com `visual_check` e anexar o screenshot ao relatório da tarefa. Rodar `python3 -m unittest discover -s tests -v` antes do commit.

@@ -141,6 +141,17 @@ class TestScriptTables(unittest.TestCase):
         assert m[0x8CDBC] == 0x96838
         assert us[[x.offset for x in us].index(m[0x8CDBC])].body.startswith("After the Ghouls departed")
 
+    def test_match_script_paginas_concatenadas(self):
+        jp = extract_script(Rom(JP))
+        us = extract_script(Rom(US))
+        m = match_script(jp, us)
+        destino = next(x for x in jp if x.body.startswith("運命というものは"))
+        assert m[destino.offset] == 0x96EC0
+        assert next(x for x in us if x.offset == 0x96EC0).body.startswith("Destiny cannot be changed")
+        # 0x8D390 só casa depois de dividir o bloco US em páginas `$p`.
+        assert m[0x8D390] == 0x98AC0
+        assert next(x for x in us if x.offset == 0x98AC0).body.startswith("Excuse me!")
+
 
 if __name__ == "__main__":
     unittest.main()

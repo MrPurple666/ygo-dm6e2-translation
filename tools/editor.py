@@ -11,7 +11,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import gi  # noqa: E402
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk  # noqa: E402
+gi.require_version("Gdk", "3.0")
+from gi.repository import Gdk, Gtk  # noqa: E402
 
 
 from tools.editor_core import (  # noqa: E402
@@ -25,6 +26,13 @@ from ygo.carddata import (  # noqa: E402
     read_stats,
     write_password,
     write_stats,
+)
+from ygo.palette import (  # noqa: E402
+    CARD_COUNT,
+    PALETTE_COLORS,
+    bgr555_to_rgb,
+    read_palette,
+    write_palette,
 )
 from ygo.rom import Rom, write_ips  # noqa: E402
 
@@ -134,6 +142,35 @@ def apply_stats_edit(rom: bytes, index: int, field: str, value) -> bytes:
     return write_stats(rom, index, stats)
 
 
+def palette_rows(rom, names: dict | None = None) -> list[tuple[str, str]]:
+    """Uma linha por carta: índice e nome (ou rótulo neutro)."""
+    names = names or {}
+    rows = []
+    for index in range(CARD_COUNT):
+        name = _text_of(names.get(str(index), ""))
+        rows.append((str(index), name or f"Card {index}"))
+    return rows
+
+
+def apply_palette_edit(
+    rom: bytes, index: int, color_index: int, value: int
+) -> bytes:
+    """Troca uma cor BGR555 da paleta da carta sobre uma cópia da ROM."""
+    if not 0 <= index < CARD_COUNT:
+        raise IndexError(f"índice de carta inválido: {index}")
+    if not 0 <= color_index < PALETTE_COLORS:
+        raise ValueError(f"índice de cor inválido: {color_index}")
+    try:
+        value = int(value)
+    except (TypeError, ValueError):
+        raise ValueError(f"cor deve ser inteiro: {value!r}") from None
+    if not 0 <= value <= 0xFFFF:
+        raise ValueError(f"cor fora de 0..0xFFFF: {value}")
+    colors = read_palette(rom)[index]
+    colors[color_index] = value
+    return write_palette(rom, index, colors)
+
+
 def _diff_records(original: bytes, patched: bytes) -> list[tuple[int, bytes]]:
     """Registros IPS (offset, bytes) das diferenças, em blocos de 0xFFFF."""
     if len(original) != len(patched):
@@ -174,6 +211,10 @@ class EditorWindow(Gtk.Window):
         self.current_key = None
         self.current_card = None
         self.card_edits: dict[int, dict[str, str]] = {}
+        self.current_palette = None
+        self.current_color = None
+        self.palette_edits: dict[int, list[int]] = {}
+        self._palette_sync = False
         self.jp_data = None
         self.rom_error = ""
         try:
@@ -194,6 +235,9 @@ class EditorWindow(Gtk.Window):
         card_page = self._build_card_page()
         self.notebook.append_page(card_page, Gtk.Label(label="Card data"))
         self.views["carddata"] = card_page
+        palette_page = self._build_palette_page()
+        self.notebook.append_page(palette_page, Gtk.Label(label="Palette"))
+        self.views["palette"] = palette_page
 
         bottom = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
         self.status = Gtk.Label(label="")
@@ -206,6 +250,7 @@ class EditorWindow(Gtk.Window):
         self.notebook.connect("switch-page", self.on_switch_page)
         self._refresh("names")
         self._refresh_cards()
+        self._refresh_palettes()
 
     def _build_page(self, section: str) -> Gtk.Box:
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
@@ -290,6 +335,178 @@ class EditorWindow(Gtk.Window):
             "warning": warning,
         }
         return box
+
+    def _build_palette_page(self) -> Gtk.Box:
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        warning = Gtk.Label(label="")
+        box.pack_start(warning, False, False, 0)
+
+        store = Gtk.ListStore(str, str, str)
+        tree = Gtk.TreeView(model=store)
+        for column_index, title in enumerate(("Index", "Name")):
+            renderer = Gtk.CellRendererText()
+            tree.append_column(Gtk.TreeViewColumn(title, renderer, text=column_index))
+        sample = Gtk.CellRendererText()
+        tree.append_column(
+            Gtk.TreeViewColumn(
+                "Sample", sample, text=2, cell_background=2
+            )
+        )
+        tree.set_search_column(1)
+        tree.get_selection().connect("changed", self.on_palette_select)
+        scrolled = Gtk.ScrolledWindow()
+        scrolled.add(tree)
+        box.pack_start(scrolled, True, True, 0)
+
+        swatch_grid = Gtk.Grid(column_spacing=2, row_spacing=2)
+        swatches = []
+        for index in range(PALETTE_COLORS):
+            swatch = Gtk.Button()
+            swatch.set_size_request(24, 24)
+            swatch._color_index = index  # type: ignore[attr-defined]
+            swatch.connect("clicked", self.on_palette_swatch)
+            swatch_grid.attach(swatch, index % 8, index // 8, 1, 1)
+            swatches.append(swatch)
+        box.pack_start(swatch_grid, False, False, 0)
+
+        grid = Gtk.Grid(column_spacing=6, row_spacing=6)
+        entries = {}
+        for column, key in enumerate(("r", "g", "b", "hex")):
+            grid.attach(Gtk.Label(label=key.upper()), column, 0, 1, 1)
+            entries[key] = Gtk.Entry()
+            entries[key].connect("changed", self.on_palette_field_changed)
+            grid.attach(entries[key], column, 1, 1, 1)
+        box.pack_start(grid, False, False, 0)
+
+        save = Gtk.Button(label="Save color")
+        save.connect("clicked", self.on_save_palette)
+        box.pack_start(save, False, False, 0)
+
+        self._palette_page = {
+            "store": store,
+            "tree": tree,
+            "swatches": swatches,
+            "entries": entries,
+            "warning": warning,
+        }
+        return box
+
+    def _refresh_palettes(self, select=None) -> None:
+        page = self._palette_page
+        page["store"].clear()
+        if self.jp_data is None:
+            page["warning"].set_text(f"JP ROM unavailable: {self.rom_error}")
+            return
+        page["warning"].set_text("")
+        data = self._card_output()
+        palettes = read_palette(data)
+        for key, name in palette_rows(data, self.data.get("names", {})):
+            red, green, blue = bgr555_to_rgb(palettes[int(key)][0])
+            page["store"].append([key, name, f"#{red:02X}{green:02X}{blue:02X}"])
+        if select is not None:
+            self._palette_page["tree"].get_selection().select_iter(
+                self._palette_page["store"].get_iter(
+                    Gtk.TreePath.new_from_string(str(select))
+                )
+            )
+
+    def _set_swatch(self, swatch, value: int) -> None:
+        red, green, blue = bgr555_to_rgb(value)
+        swatch.override_background_color(
+            Gtk.StateFlags.NORMAL,
+            Gdk.RGBA(red=red / 255, green=green / 255, blue=blue / 255, alpha=1),
+        )
+        swatch.set_tooltip_text(f"{value:04X}")
+
+    def _show_palette(self, colors: list[int]) -> None:
+        for swatch, value in zip(self._palette_page["swatches"], colors):
+            self._set_swatch(swatch, value)
+        self.current_color = 0
+        self._load_color(colors[0])
+
+    def _load_color(self, value: int) -> None:
+        entries = self._palette_page["entries"]
+        self._palette_sync = True
+        try:
+            entries["r"].set_text(str(value & 0x1F))
+            entries["g"].set_text(str((value >> 5) & 0x1F))
+            entries["b"].set_text(str((value >> 10) & 0x1F))
+            entries["hex"].set_text(f"{value:04X}")
+        finally:
+            self._palette_sync = False
+
+    def on_palette_field_changed(self, entry):
+        if self._palette_sync:
+            return
+        entries = self._palette_page["entries"]
+        try:
+            if entry is entries["hex"]:
+                value = int(entry.get_text(), 16)
+                if not 0 <= value <= 0xFFFF:
+                    return
+                self._load_color(value)
+                return
+            red, green, blue = (int(entries[key].get_text()) for key in ("r", "g", "b"))
+            if not all(0 <= channel < 32 for channel in (red, green, blue)):
+                return
+            high = int(entries["hex"].get_text(), 16) & 0x8000
+            self._load_color(high | red | green << 5 | blue << 10)
+        except ValueError:
+            return
+
+    def on_palette_select(self, selection):
+        model, iterator = selection.get_selected()
+        if iterator is None:
+            return
+        self.current_palette = int(model[iterator][0])
+        self._show_palette(read_palette(self._card_output())[self.current_palette])
+
+    def on_palette_swatch(self, button):
+        if self.current_palette is None:
+            self.status.set_text("select a card")
+            return
+        colors = read_palette(self._card_output())[self.current_palette]
+        self.current_color = button._color_index
+        self._load_color(colors[self.current_color])
+
+    def _palette_value(self) -> int:
+        text = self._palette_page["entries"]["hex"].get_text().strip()
+        value = int(text, 16)
+        if not 0 <= value <= 0xFFFF:
+            raise ValueError(f"cor fora de 0..FFFF: {text}")
+        return value
+
+    def on_save_palette(self, button):
+        if self.jp_data is None:
+            self.status.set_text("JP ROM unavailable")
+            return
+        if self.current_palette is None:
+            self.status.set_text("select a card")
+            return
+        if self.current_color is None:
+            self.status.set_text("select a color")
+            return
+        index = self.current_palette
+        color = self.current_color
+        data = self._card_output()
+        try:
+            colors = read_palette(data)[index]
+            colors[color] = self._palette_value()
+            data = write_palette(data, index, colors)
+        except (IndexError, ValueError) as exc:
+            self.status.set_text(str(exc))
+            return
+        if OUT_ROM.resolve() == JP_ROM.resolve():
+            self.status.set_text("refusing to overwrite the JP ROM")
+            return
+        for path in (OUT_ROM, OUT_IPS):
+            if path.exists():
+                shutil.copy2(path, path.with_suffix(path.suffix + ".bak"))
+        OUT_ROM.write_bytes(data)
+        write_ips(OUT_IPS, _diff_records(self.jp_data, data))
+        self.palette_edits[index] = colors
+        self._refresh_palettes(select=index)
+        self.status.set_text(f"saved palette {index} color {color}")
 
     def _card_output(self) -> bytes:
         try:
@@ -377,8 +594,12 @@ class EditorWindow(Gtk.Window):
         return buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), False)
 
     def on_switch_page(self, notebook, page, index):
-        if index >= len(SECTIONS):
+        if index == len(SECTIONS):
             self.current_section = "carddata"
+            self.current_key = None
+            return
+        if index > len(SECTIONS):
+            self.current_section = "palette"
             self.current_key = None
             return
         section = list(SECTIONS)[index]
@@ -443,6 +664,7 @@ class EditorWindow(Gtk.Window):
         if self.current_section in SECTIONS:
             self._refresh(self.current_section)
         self._refresh_cards()
+        self._refresh_palettes()
         self.status.set_text("reloaded")
 
     def _apply_card_edits(self) -> None:
@@ -456,6 +678,20 @@ class EditorWindow(Gtk.Window):
                     data = apply_stats_edit(data, index, field, value)
         except (OSError, IndexError, ValueError) as exc:
             self.status.set_text(f"card edits not applied: {exc}")
+            return
+        OUT_ROM.write_bytes(data)
+        write_ips(OUT_IPS, _diff_records(self.jp_data, data))
+
+    def _apply_palette_edits(self) -> None:
+        """Reaplica as paletas da sessão apagadas pelo rebuild da ROM de saída."""
+        if not self.palette_edits or self.jp_data is None:
+            return
+        try:
+            data = OUT_ROM.read_bytes()
+            for index, colors in self.palette_edits.items():
+                data = write_palette(data, index, colors)
+        except (OSError, IndexError, ValueError) as exc:
+            self.status.set_text(f"palette edits not applied: {exc}")
             return
         OUT_ROM.write_bytes(data)
         write_ips(OUT_IPS, _diff_records(self.jp_data, data))
@@ -481,7 +717,9 @@ class EditorWindow(Gtk.Window):
         )
         if result.returncode == 0:
             self._apply_card_edits()
+            self._apply_palette_edits()
         self._refresh_cards()
+        self._refresh_palettes()
         dialog = Gtk.MessageDialog(
             transient_for=self,
             flags=0,

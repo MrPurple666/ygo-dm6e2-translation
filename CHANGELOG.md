@@ -7,6 +7,7 @@
 - English translation of the Japanese ROM of Duel Monsters 6 Expert 2, preserving all 1115 cards.
 - Python pipeline to extract names, descriptions, dialogue and UI text from both ROMs and generate a ROM, IPS patch and report.
 - Card data tab for editing ATK, DEF, level, attribute, race, subtype and passwords, with fixed-slot validation, backup and IPS regeneration.
+- Palette tab for editing the 64 BGR555 colors of each card, with backup and IPS regeneration.
 - Manual translation tables and short descriptions in `data/`.
 - GTK 3 desktop editor with search, validation, backup and rebuild button.
 - README and changelog.

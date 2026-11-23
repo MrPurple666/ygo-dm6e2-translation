@@ -29,7 +29,7 @@ Outputs:
 python3 tools/editor.py
 ```
 
-Requirements: GTK 3 via PyGObject (`gi`). The editor has tabs for names, descriptions, dialogue, UI, overrides and **Card data**. The text tabs filter entries, validate control codes (`$...`, `@N`, `%s`) and cp932 byte size, and save with a `.bak` backup. The Card data tab edits ATK, DEF, level, attribute, race, subtype and passwords in the fixed 4-byte records at `0x979D24` and `0x97B74C`, backing up the output ROM/IPS before saving. A button runs the build.
+Requirements: GTK 3 via PyGObject (`gi`). The editor has tabs for names, descriptions, dialogue, UI, overrides, **Card data** and **Palette**. The text tabs filter entries, validate control codes (`$...`, `@N`, `%s`) and cp932 byte size, and save with a `.bak` backup. The Card data tab edits ATK, DEF, level, attribute, race, subtype and passwords in the fixed 4-byte records at `0x979D24` and `0x97B74C`. The Palette tab edits the 64 BGR555 colors of each card at `0x156F20 + card_id*0x80`. Both binary tabs back up the output ROM/IPS before saving and reapply edits after a build.
 
 Editable text lives in:
 

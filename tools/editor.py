@@ -1,6 +1,7 @@
 """Desktop editor for the Yu-Gi-Oh! DM6 Expert 2 translation."""
 
 import copy
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -45,8 +46,8 @@ SECTIONS = {
 }
 LIMITS = {"names": 63, "descriptions": 383, "overrides": 383}
 
-CARD_FIELDS = ("atk", "def", "level", "attr", "race", "password")
-CARD_COLUMNS = {"atk": 2, "def": 3, "level": 4, "attr": 5, "race": 6, "password": 7}
+CARD_FIELDS = ("atk", "def", "level", "attr", "race", "sub", "password")
+CARD_COLUMNS = {"atk": 2, "def": 3, "level": 4, "attr": 5, "race": 6, "sub": 7, "password": 8}
 IPS_MAX = 0xFFFF
 
 
@@ -258,9 +259,9 @@ class EditorWindow(Gtk.Window):
         warning = Gtk.Label(label="")
         box.pack_start(warning, False, False, 0)
 
-        store = Gtk.ListStore(*([str] * 8))
+        store = Gtk.ListStore(*([str] * 9))
         tree = Gtk.TreeView(model=store)
-        titles = ("Index", "Name", "ATK", "DEF", "Level", "Attr", "Race", "Password")
+        titles = ("Index", "Name", "ATK", "DEF", "Level", "Attr", "Race", "Sub", "Password")
         for column_index, title in enumerate(titles):
             renderer = Gtk.CellRendererText()
             tree.append_column(Gtk.TreeViewColumn(title, renderer, text=column_index))
@@ -320,6 +321,7 @@ class EditorWindow(Gtk.Window):
                     str(entry["level"]),
                     str(entry["attr"]),
                     str(entry["race"]),
+                    str(entry["sub"]),
                     passwords[index] or "",
                 ]
             )
@@ -351,6 +353,9 @@ class EditorWindow(Gtk.Window):
         if OUT_ROM.resolve() == JP_ROM.resolve():
             self.status.set_text("refusing to overwrite the JP ROM")
             return
+        for path in (OUT_ROM, OUT_IPS):
+            if path.exists():
+                shutil.copy2(path, path.with_suffix(path.suffix + ".bak"))
         OUT_ROM.write_bytes(data)
         write_ips(OUT_IPS, _diff_records(self.jp_data, data))
         self.card_edits[index] = {

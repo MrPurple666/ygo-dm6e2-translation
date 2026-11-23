@@ -152,6 +152,7 @@ class TestCardDataWindow(unittest.TestCase):
                 "level",
                 "attr",
                 "race",
+                "sub",
                 "password",
             }
         finally:
@@ -182,6 +183,32 @@ class TestCardDataWindow(unittest.TestCase):
             assert read_stats(Rom(JP_ROM).data)[803]["atk"] == 2500
             raw = ips.read_bytes()
             assert raw[:5] == b"PATCH" and raw[-3:] == b"EEE"
+
+    def test_save_creates_backups_of_output_rom_and_ips(self):
+        from gi.repository import Gtk
+
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "dm6-en.gba"
+            ips = Path(tmp) / "dm6-en.ips"
+            out.write_bytes(JP_ROM.read_bytes())
+            ips.write_bytes(b"PATCH" + b"\x00" * 32 + b"EEE")
+            original_ips = ips.read_bytes()
+            with mock.patch("tools.editor.OUT_ROM", out), mock.patch(
+                "tools.editor.OUT_IPS", ips
+            ):
+                window = EditorWindow()
+                try:
+                    page = window._card_page
+                    selection = page["tree"].get_selection()
+                    selection.select_iter(
+                        page["store"].get_iter(Gtk.TreePath.new_from_string("803"))
+                    )
+                    page["entries"]["sub"].set_text("1")
+                    window.on_save_card(None)
+                finally:
+                    window.destroy()
+            assert out.with_suffix(".gba.bak").read_bytes() == JP_ROM.read_bytes()
+            assert ips.with_suffix(".ips.bak").read_bytes() == original_ips
 
     def test_save_keeps_existing_output_bytes_and_patches_them(self):
         from gi.repository import Gtk

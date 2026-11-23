@@ -3,14 +3,30 @@ import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
-from tools.editor import EditorWindow, SECTIONS, apply_edit, combine_data, filter_rows, validation_for
+from tools.editor import (
+    EditorWindow,
+    SECTIONS,
+    _diff_records,
+    apply_edit,
+    apply_stats_edit,
+    combine_data,
+    filter_rows,
+    stats_rows,
+    validation_for,
+)
 from tools.editor_core import (
     load_overrides,
     load_translations,
     save_translations,
     validate_entry,
 )
+from ygo.carddata import read_password, read_stats
+from ygo.rom import Rom
+
+ROOT = Path(__file__).resolve().parents[1]
+JP_ROM = ROOT / "Yu-Gi-Oh! Duel Monsters 6 Expert 2 (Japan).gba"
 
 
 class TestEditorView(unittest.TestCase):
@@ -76,3 +92,92 @@ class TestEditorCore(unittest.TestCase):
     def test_load_overrides(self):
         data = load_overrides(Path("data/manual_descriptions.json"))
         assert isinstance(data, dict) and data
+
+
+@unittest.skipUnless(JP_ROM.exists(), "JP ROM ausente")
+class TestCardData(unittest.TestCase):
+    def setUp(self):
+        self.data = Rom(JP_ROM).data
+
+    def test_stats_rows_lists_every_card_with_name(self):
+        rows = stats_rows(self.data, {"803": {"en": "Dark Magician"}})
+        assert len(rows) == 1115
+        assert rows[803][0] == "803"
+        assert "Dark Magician" in rows[803][1]
+
+    def test_stats_rows_describes_stats_without_names(self):
+        rows = stats_rows(self.data)
+        assert "ATK 2500" in rows[803][1]
+        assert "DEF 2100" in rows[803][1]
+        assert "Lv 7" in rows[803][1]
+
+    def test_apply_stats_edit_updates_only_that_field(self):
+        before = read_stats(self.data)
+        edited = apply_stats_edit(self.data, 803, "atk", "2600")
+        after = read_stats(edited)
+        assert after[803]["atk"] == 2600
+        assert after[803]["def"] == before[803]["def"]
+        assert after[:803] == before[:803]
+        assert after[804:] == before[804:]
+
+    def test_apply_stats_edit_rejects_invalid_values(self):
+        with self.assertRaises(ValueError):
+            apply_stats_edit(self.data, 803, "atk", "2605")
+        with self.assertRaises(ValueError):
+            apply_stats_edit(self.data, 803, "level", "16")
+
+    def test_apply_stats_edit_password_roundtrip(self):
+        edited = apply_stats_edit(self.data, 1114, "password", "12345678")
+        assert read_password(edited)[1114] == "12345678"
+        cleared = apply_stats_edit(edited, 1114, "password", "")
+        assert read_password(cleared)[1114] is None
+
+    def test_diff_records_groups_contiguous_changes(self):
+        assert _diff_records(b"abcdef", b"abXdeY") == [(2, b"X"), (5, b"Y")]
+
+
+@unittest.skipUnless(os.environ.get("DISPLAY"), "requires X11")
+@unittest.skipUnless(JP_ROM.exists(), "JP ROM ausente")
+class TestCardDataWindow(unittest.TestCase):
+    def test_window_has_card_data_tab(self):
+        window = EditorWindow()
+        try:
+            assert window.notebook.get_n_pages() == len(SECTIONS) + 1
+            assert "carddata" in window.views
+            page = window._card_page
+            assert len(page["store"]) == 1115
+            assert set(page["entries"]) == {
+                "atk",
+                "def",
+                "level",
+                "attr",
+                "race",
+                "password",
+            }
+        finally:
+            window.destroy()
+
+    def test_save_writes_output_rom_and_ips_only(self):
+        from gi.repository import Gtk
+
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "dm6-en.gba"
+            ips = Path(tmp) / "dm6-en.ips"
+            with mock.patch("tools.editor.OUT_ROM", out), mock.patch(
+                "tools.editor.OUT_IPS", ips
+            ):
+                window = EditorWindow()
+                try:
+                    page = window._card_page
+                    selection = page["tree"].get_selection()
+                    selection.select_iter(
+                        page["store"].get_iter(Gtk.TreePath.new_from_string("803"))
+                    )
+                    page["entries"]["atk"].set_text("2600")
+                    window.on_save_card(None)
+                finally:
+                    window.destroy()
+            assert read_stats(Rom(out).data)[803]["atk"] == 2600
+            assert read_stats(Rom(JP_ROM).data)[803]["atk"] == 2500
+            raw = ips.read_bytes()
+            assert raw[:5] == b"PATCH" and raw[-3:] == b"EEE"

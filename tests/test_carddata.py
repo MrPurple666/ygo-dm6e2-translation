@@ -108,6 +108,11 @@ class TestWriteStats(unittest.TestCase):
         assert any("atk" in message for message in problems)
         assert any("10" in message for message in problems)
 
+    def test_validation_rejects_float_field(self):
+        stats = read_stats(self.rom)[803]
+        problems = validate_stats({**stats, "atk": 2500.0})
+        assert any("inteiro" in message for message in problems)
+
     def test_validation_accepts_real_stats(self):
         assert all(validate_stats(stats) == [] for stats in read_stats(self.rom))
 

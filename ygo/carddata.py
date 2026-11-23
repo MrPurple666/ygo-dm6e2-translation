@@ -63,6 +63,9 @@ def validate_stats(stats: dict) -> list[str]:
             problems.append(f"{field} ausente")
             continue
         value = stats[field]
+        if not isinstance(value, int) or isinstance(value, bool):
+            problems.append(f"{field} deve ser inteiro: {value!r}")
+            continue
         if field in ("atk", "def") and value % 10:
             problems.append(f"{field} deve ser múltiplo de 10: {value}")
         if not low <= value <= high:

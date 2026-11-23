@@ -175,9 +175,64 @@ class TestCardDataWindow(unittest.TestCase):
                     )
                     page["entries"]["atk"].set_text("2600")
                     window.on_save_card(None)
+                    assert window.card_edits[803]["atk"] == "2600"
                 finally:
                     window.destroy()
             assert read_stats(Rom(out).data)[803]["atk"] == 2600
             assert read_stats(Rom(JP_ROM).data)[803]["atk"] == 2500
             raw = ips.read_bytes()
             assert raw[:5] == b"PATCH" and raw[-3:] == b"EEE"
+
+    def test_save_keeps_existing_output_bytes_and_patches_them(self):
+        from gi.repository import Gtk
+
+        jp = Rom(JP_ROM).data
+        offset = 0xC00000
+        marker = b"EN-MARKER"
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "dm6-en.gba"
+            ips = Path(tmp) / "dm6-en.ips"
+            out.write_bytes(jp[:offset] + marker + jp[offset + len(marker):])
+            with mock.patch("tools.editor.OUT_ROM", out), mock.patch(
+                "tools.editor.OUT_IPS", ips
+            ):
+                window = EditorWindow()
+                try:
+                    page = window._card_page
+                    selection = page["tree"].get_selection()
+                    selection.select_iter(
+                        page["store"].get_iter(Gtk.TreePath.new_from_string("803"))
+                    )
+                    page["entries"]["atk"].set_text("2600")
+                    window.on_save_card(None)
+                finally:
+                    window.destroy()
+            assert out.read_bytes()[offset:offset + len(marker)] == marker
+            assert read_stats(Rom(out).data)[803]["atk"] == 2600
+            record = offset.to_bytes(3, "big") + len(marker).to_bytes(2, "big") + marker
+            assert record in ips.read_bytes()
+
+    def test_session_card_edits_survive_a_rebuild(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "dm6-en.gba"
+            ips = Path(tmp) / "dm6-en.ips"
+            out.write_bytes(Rom(JP_ROM).data)
+            with mock.patch("tools.editor.OUT_ROM", out), mock.patch(
+                "tools.editor.OUT_IPS", ips
+            ):
+                window = EditorWindow()
+                try:
+                    window.card_edits[803] = {"atk": "2600"}
+                    window._apply_card_edits()
+                finally:
+                    window.destroy()
+            assert read_stats(Rom(out).data)[803]["atk"] == 2600
+            patched = bytearray(Rom(JP_ROM).data)
+            raw = ips.read_bytes()
+            pos = 5
+            while raw[pos:pos + 3] != b"EEE":
+                offset = int.from_bytes(raw[pos:pos + 3], "big")
+                size = int.from_bytes(raw[pos + 3:pos + 5], "big")
+                patched[offset:offset + size] = raw[pos + 5:pos + 5 + size]
+                pos += 5 + size
+            assert bytes(patched) == out.read_bytes()

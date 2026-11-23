@@ -172,6 +172,7 @@ class EditorWindow(Gtk.Window):
         self.current_section = "names"
         self.current_key = None
         self.current_card = None
+        self.card_edits: dict[int, dict[str, str]] = {}
         self.jp_data = None
         self.rom_error = ""
         try:
@@ -263,6 +264,7 @@ class EditorWindow(Gtk.Window):
         for column_index, title in enumerate(titles):
             renderer = Gtk.CellRendererText()
             tree.append_column(Gtk.TreeViewColumn(title, renderer, text=column_index))
+        tree.set_search_column(1)
         tree.get_selection().connect("changed", self.on_card_select)
         scrolled = Gtk.ScrolledWindow()
         scrolled.add(tree)
@@ -351,6 +353,10 @@ class EditorWindow(Gtk.Window):
             return
         OUT_ROM.write_bytes(data)
         write_ips(OUT_IPS, _diff_records(self.jp_data, data))
+        self.card_edits[index] = {
+            field: entry.get_text()
+            for field, entry in self._card_page["entries"].items()
+        }
         self._refresh_cards()
         self.status.set_text(f"saved card {index}")
 
@@ -434,6 +440,21 @@ class EditorWindow(Gtk.Window):
         self._refresh_cards()
         self.status.set_text("reloaded")
 
+    def _apply_card_edits(self) -> None:
+        """Reaplica as edições da sessão, que o rebuild apaga da ROM de saída."""
+        if not self.card_edits or self.jp_data is None:
+            return
+        try:
+            data = OUT_ROM.read_bytes()
+            for index, fields in self.card_edits.items():
+                for field, value in fields.items():
+                    data = apply_stats_edit(data, index, field, value)
+        except (OSError, IndexError, ValueError) as exc:
+            self.status.set_text(f"card edits not applied: {exc}")
+            return
+        OUT_ROM.write_bytes(data)
+        write_ips(OUT_IPS, _diff_records(self.jp_data, data))
+
     def on_build(self, button):
         result = subprocess.run(
             [
@@ -453,6 +474,9 @@ class EditorWindow(Gtk.Window):
             capture_output=True,
             text=True,
         )
+        if result.returncode == 0:
+            self._apply_card_edits()
+        self._refresh_cards()
         dialog = Gtk.MessageDialog(
             transient_for=self,
             flags=0,
